@@ -14,7 +14,7 @@ export class AppComponent {
     { title: 'Regulamento', url: '/folder/Spam', icon: 'document-text' },
     { title: 'Contato', url: '/folder/Spam', icon: 'call' },
     { title: 'Patrocianadores', url: '/folder/Spam', icon: 'warning' },
-    { title: 'Sobre', url: '/folder/Spam', icon: 'information-circle' },
+    { title: 'Sobre a liga', url: '/about', icon: 'information-circle' },
   ];
   constructor() {}
 }
