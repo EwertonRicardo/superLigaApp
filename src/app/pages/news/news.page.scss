@@ -1,0 +1,35 @@
+.container {
+    padding: 6px 10px;
+
+    ion-item {
+        // --background: rgba(255, 255, 255, 0.1);
+        --background: linear-gradient(80deg, rgba(45, 112, 229, 1) 35%, rgba(14, 59, 140, 1) 100%);
+        //  90deg, rgba(14,59,140,1) 0%,
+        padding: 0;
+        margin: 14px 0;
+        --border-radius: 10px;
+        color: #ffffff;
+        font-weight: 600;
+
+        ion-label {
+            padding: 6px 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: grid;
+
+            h4 {
+                font-weight: 600;
+                font-size: 16px;
+            }
+            h6 {
+                color: rgba(255, 255, 255, 0.66);
+            }
+
+            p {
+                color: rgba(255, 255, 255, 0.66);
+                font-size: 10px;
+                text-align: right;
+            }
+        }
+    }
+}

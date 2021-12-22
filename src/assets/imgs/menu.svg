@@ -1,0 +1,15 @@
+<svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 12 14">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #f1f5f8;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <path id="Path_2" data-name="Path 2" class="cls-1" d="M0,1H10" transform="translate(0 0)"/>
+  <path id="Path_2-2" data-name="Path 2" class="cls-1" d="M0,1H7" transform="translate(0 6)"/>
+  <path id="Path_2-3" data-name="Path 2" class="cls-1" d="M0,1H12" transform="translate(0 12)"/>
+</svg>

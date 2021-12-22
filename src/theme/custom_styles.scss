@@ -1,0 +1,12 @@
+ion-content {
+    --background: var(--grey-background);
+    // --background: linear-gradient(90deg, rgba(14,59,140,1) 0%, rgba(45,112,229,1) 35%, rgba(45,112,229,1) 100%);
+}
+
+ion-list {
+    background-color: var(----grey-background) !important;
+}
+
+ion-item {
+    --background: var(--grey-background);
+}
