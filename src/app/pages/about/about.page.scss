@@ -1,6 +1,10 @@
 .container {
-
     padding: 20px 10px;
     text-align: justify;
-    color: var(--ion-color-medium-shade);
+
+    p {
+        font-family: Gilroy-bold;
+        color: var(--ion-color-medium-shade);
+        font-size: 15px;
+    }
 }
