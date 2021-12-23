@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamsPage implements OnInit {
 
-  teamGender = 'male';
+  teamGender = 'female';
   constructor() { }
 
   ngOnInit() {
