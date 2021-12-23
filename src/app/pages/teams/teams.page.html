@@ -1,0 +1,33 @@
+<app-header title="Equipes"></app-header>
+
+
+<ion-content>
+  <ion-segment [(ngModel)]="teamGender">
+    <ion-segment-button value="male">
+      Masculino
+    </ion-segment-button>
+    <ion-segment-button value="female">
+      Feminino
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="teamGender">
+    <ion-card *ngSwitchCase="'male'">
+      <ion-card-header>
+        First Content
+      </ion-card-header>
+      <ion-card-content>
+        First Content here
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngSwitchCase="'female'">
+      <ion-card-header>
+        Second Header
+      </ion-card-header>
+      <ion-card-content>
+        Second content here
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -9,6 +9,9 @@ export class HeaderComponent implements OnInit {
   @Input()
   title = '';
 
+  @Input()
+  hasBorder = true;
+
   constructor() { }
 
   ngOnInit() {}

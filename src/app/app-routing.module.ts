@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'sponsors',
     loadChildren: () => import('./pages/sponsors/sponsors.module').then( m => m.SponsorsPageModule)
+  },
+  {
+    path: 'teams',
+    loadChildren: () => import('./pages/teams/teams.module').then( m => m.TeamsPageModule)
   }
 ];
 
