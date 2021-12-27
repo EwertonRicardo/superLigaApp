@@ -1,4 +1,4 @@
-<app-header title="Equipes"></app-header>
+<app-header title="Equipes" [hasNoBorder]="true"></app-header>
 
 
 <ion-content>
@@ -12,14 +12,20 @@
   </ion-segment>
 
   <div [ngSwitch]="teamGender">
-    <ion-card *ngSwitchCase="'male'">
-      <ion-card-header>
-        First Content
-      </ion-card-header>
-      <ion-card-content>
-        First Content here
-      </ion-card-content>
-    </ion-card>
+    <ng-container *ngSwitchCase="'male'">
+     <ion-list>
+      <ion-item *ngFor="let i of [].constructor(10)">
+        <ion-avatar slot="start">
+          <img src="https://image.shutterstock.com/image-vector/user-avatar-icon-sign-profile-600w-1145752283.jpg" />
+        </ion-avatar>
+        <ion-label>
+          <h2>Finn</h2>
+          <h3>I'm a big deal</h3>
+          <p>Listen, I've had a pretty messed up day...</p>
+        </ion-label>
+      </ion-item>
+     </ion-list>
+    </ng-container>
 
     <ion-card *ngSwitchCase="'female'">
       <ion-card-header>

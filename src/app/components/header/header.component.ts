@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   title = '';
 
   @Input()
-  hasBorder = true;
+  hasNoBorder = false;
 
   constructor() { }
 
