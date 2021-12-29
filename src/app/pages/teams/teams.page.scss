@@ -8,7 +8,7 @@ ion-segment.md {
 
         --indicator-color: var(--white);
         --color-checked: var(--white);
-        --color: rgba(255,255,255, 0.6);
+        --color: rgba(255, 255, 255, 0.6);
     }
 }
 
@@ -22,6 +22,41 @@ ion-segment.ios {
 
         --indicator-color: var(--white);
         --color-checked: var(--ion-color-medium-shade);
-        --color: rgba(255,255,255, 0.6);
+        --color: rgba(255, 255, 255, 0.6);
     }
+}
+
+.container {
+    margin-top: 20px;
+}
+
+ion-item ion-icon {
+    font-size: 20px;
+    color: var(--ion-color-medium-shade);
+}
+
+ion-list .players-name {
+    padding-left: 16px;
+
+    white-space: nowrap;
+    overflow: hidden;
+
+    p {
+        color: var(--ion-color-medium-tint);
+        margin: 8px 0 8px 0;
+        font-size: 12px;
+        text-transform: capitalize;
+
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}
+
+ion-list.ios .players-name {
+    padding-left: 20px;
+}
+
+ion-item ion-label p {
+
+    text-transform: capitalize;
 }

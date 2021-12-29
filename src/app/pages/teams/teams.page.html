@@ -11,29 +11,41 @@
     </ion-segment-button>
   </ion-segment>
 
-  <div [ngSwitch]="teamGender">
+  <div class="container" [ngSwitch]="teamGender">
     <ng-container *ngSwitchCase="'male'">
-     <ion-list>
-      <ion-item *ngFor="let i of [].constructor(10)">
-        <ion-avatar slot="start">
-          <img src="https://image.shutterstock.com/image-vector/user-avatar-icon-sign-profile-600w-1145752283.jpg" />
-        </ion-avatar>
+     <ion-list *ngFor="let team of teams" (click)="team.isShow= !team.isShow" class="ion-no-padding">
+      <ion-item button detailIcon="false" detail="false">
         <ion-label>
-          <h2>Finn</h2>
-          <h3>I'm a big deal</h3>
-          <p>Listen, I've had a pretty messed up day...</p>
+          <p>{{ team.name }}</p>
         </ion-label>
+
+        <ion-icon [name]="!team.isShow ? 'chevron-down-outline' : 'chevron-up-outline'" slot="end"></ion-icon>
       </ion-item>
+      
+      <ng-container *ngIf="team.isShow">
+        <div class="players-name">
+          <p *ngFor="let player of team.players">{{ player }}</p>
+        </div>
+      </ng-container>
      </ion-list>
     </ng-container>
 
-    <ion-card *ngSwitchCase="'female'">
-      <ion-card-header>
-        Second Header
-      </ion-card-header>
-      <ion-card-content>
-        Second content here
-      </ion-card-content>
-    </ion-card>
+    <ng-container *ngSwitchCase="'female'">
+      <ion-list *ngFor="let team of teams" (click)="team.isShow= !team.isShow" class="ion-no-padding">
+       <ion-item button detailIcon="false" detail="false">
+         <ion-label>
+           <p>{{ team.name }}</p>
+         </ion-label>
+ 
+         <ion-icon [name]="!team.isShow ? 'chevron-down-outline' : 'chevron-up-outline'" slot="end"></ion-icon>
+       </ion-item>
+       
+       <ng-container *ngIf="team.isShow">
+         <div class="players-name">
+           <p *ngFor="let player of team.players">{{ player }}</p>
+         </div>
+       </ng-container>
+      </ion-list>
+     </ng-container>
   </div>
 </ion-content>
