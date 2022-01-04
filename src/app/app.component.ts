@@ -12,7 +12,7 @@ export class AppComponent {
     { title: 'Ranking', url: '/folder/Archived', icon: 'star' },
     { title: 'Galeria de fotos', url: '/folder/Trash', icon: 'images' },
     { title: 'Regulamento', url: '/folder/Spam', icon: 'document-text' },
-    { title: 'Contato', url: '/folder/Spam', icon: 'call' },
+    { title: 'Contato', url: '/contact', icon: 'call' },
     { title: 'Patrocianadores', url: '/sponsors', icon: 'warning' },
     { title: 'Sobre a liga', url: '/about', icon: 'information-circle' },
   ];
