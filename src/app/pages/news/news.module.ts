@@ -1,3 +1,4 @@
+import { NewDetailComponent } from './component/new-detail/new-detail.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +17,6 @@ import { SharedComponentsModule } from './../../components/shared-components.mod
     NewsPageRoutingModule,
     SharedComponentsModule
   ],
-  declarations: [NewsPage]
+  declarations: [NewsPage, NewDetailComponent]
 })
 export class NewsPageModule {}

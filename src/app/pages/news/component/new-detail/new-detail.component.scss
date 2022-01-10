@@ -1,0 +1,30 @@
+ion-toolbar {
+    --background: linear-gradient(80deg, rgba(45, 112, 229, 1) 35%, rgba(14, 59, 140, 1) 100%);
+}
+
+#menu-icon{
+    width: 25px;
+    height: 35px;
+    margin-inline: 15px;
+    color: rgba(255, 255, 255, 0.66);
+}
+
+.container {
+    padding: 0 15px;
+}
+
+.container h3 {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.container .posted-date {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 0;
+}
+.container p {
+    text-align: justify;
+    color: var(--ion-color-medium-tint);
+    font-size: 14px;
+}

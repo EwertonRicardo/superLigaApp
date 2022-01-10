@@ -1,4 +1,6 @@
+import { NewDetailComponent } from './component/new-detail/new-detail.component';
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-news',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
   }
 
+  public async openNewDetail(): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: NewDetailComponent,
+    });
+
+    await modal.present();
+  }
 }
