@@ -1,3 +1,4 @@
+import { SharedComponentsModule } from './../../components/shared-components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { GamesPage } from './games.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    GamesPageRoutingModule
+    GamesPageRoutingModule,
+    SharedComponentsModule
   ],
   declarations: [GamesPage]
 })

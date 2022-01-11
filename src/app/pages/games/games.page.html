@@ -1,9 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>games</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Jogos" [hasNoBorder]="true"></app-header>
 
 <ion-content>
+  <ion-segment [(ngModel)]="teamGender">
+    <ion-segment-button value="male">
+      Masculino
+    </ion-segment-button>
+    <ion-segment-button value="female">
+      Feminino
+    </ion-segment-button>
+  </ion-segment>
 
+  <div class="container" [ngSwitch]="teamGender">
+    <ng-container *ngSwitchCase="'male'">
+ 
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'female'">
+ 
+     </ng-container>
+  </div>
 </ion-content>

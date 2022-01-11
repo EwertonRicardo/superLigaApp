@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class TeamsPage implements OnInit {
 
   teamGender = 'male';
-  show = false;
-
   teams = [
     {
       name: 'Seleção recife de volley',

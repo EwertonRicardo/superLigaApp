@@ -1,3 +1,7 @@
+* {
+    font-family: 'Gilroy-bold';
+}
+
 ion-content {
     --background: var(--grey-background);
     // --background: linear-gradient(90deg, rgba(14,59,140,1) 0%, rgba(45,112,229,1) 35%, rgba(45,112,229,1) 100%);
@@ -11,6 +15,30 @@ ion-item {
     --background: var(--grey-background);
 }
 
-* {
-    font-family: 'Gilroy-bold';
+ion-segment.md {
+    --background: linear-gradient(80deg, rgba(45, 112, 229, 1) 35%, rgba(14, 59, 140, 1) 100%);
+
+    ion-segment-button {
+        font-family: Gilroy-bold;
+        font-size: 12px;
+        text-transform: capitalize;
+
+        --indicator-color: var(--white);
+        --color-checked: var(--white);
+        --color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+ion-segment.ios {
+    --background: linear-gradient(80deg, rgba(45, 112, 229, 1) 35%, rgba(14, 59, 140, 1) 100%);
+    border-radius: 0;
+
+    ion-segment-button {
+        font-family: Gilroy-bold;
+        font-size: 12px;
+
+        --indicator-color: var(--white);
+        --color-checked: var(--ion-color-medium-shade);
+        --color: rgba(255, 255, 255, 0.6);
+    }
 }

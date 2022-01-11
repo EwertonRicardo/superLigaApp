@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./games.page.scss'],
 })
 export class GamesPage implements OnInit {
-
+  teamGender = 'male';
   constructor() { }
 
   ngOnInit() {
