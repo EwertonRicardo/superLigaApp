@@ -12,11 +12,31 @@
 
   <div class="container" [ngSwitch]="teamGender">
     <ng-container *ngSwitchCase="'male'">
- 
+      <div class="ion-padding">
+
+        <div class="meetings-example">
+          <div class="meeting-wrapper">
+            <ion-card class="meeting-card" *ngFor="let i of [].constructor(10)">
+              <ion-card-content class="meeting-card-content">
+                <ion-row>
+                  <ion-col>
+                    <p class="meeting-title">#1</p>
+                    <p class="meeting-title">Seleção recife de volleyball</p>
+                    <p class="meeting-title">Náutico</p>
+                    <p class="meeting-hours">
+                      <ion-icon name="time-outline"></ion-icon>
+                      23/02/1998 11:00</p>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </div>
+      </div>
     </ng-container>
 
     <ng-container *ngSwitchCase="'female'">
- 
-     </ng-container>
+
+    </ng-container>
   </div>
 </ion-content>
