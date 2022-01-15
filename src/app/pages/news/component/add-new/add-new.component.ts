@@ -1,4 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-new',
@@ -7,8 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNewComponent implements OnInit {
 
-  constructor() { }
+  newForm: FormGroup;
 
-  ngOnInit() {}
+  constructor(
+    private _formBuilder: FormBuilder
+  ) { }
+
+  ngOnInit() {
+    this._createForm();
+  }
+
+  public async addNote(): Promise<void> {
+    try {
+      console.log(this.newForm.value);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  private _createForm(): void {
+    this.newForm = this._formBuilder.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+    });
+  }
 
 }

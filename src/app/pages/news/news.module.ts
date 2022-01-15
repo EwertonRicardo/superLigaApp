@@ -2,7 +2,7 @@ import { AddNewComponent } from './component/add-new/add-new.component';
 import { NewDetailComponent } from './component/new-detail/new-detail.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { NewsPageRoutingModule } from './news-routing.module';
@@ -14,6 +14,7 @@ import { SharedComponentsModule } from './../../components/shared-components.mod
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     NewsPageRoutingModule,
     SharedComponentsModule
