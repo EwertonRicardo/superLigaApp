@@ -1,4 +1,3 @@
-import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,14 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewDetailComponent implements OnInit {
 
-  constructor(
-    private modalCtrl: ModalController
-  ) { }
+  constructor( ) { }
 
   ngOnInit() {}
-
-  public closeModal(): void {
-    this.modalCtrl.dismiss();
-  }
 
 }
