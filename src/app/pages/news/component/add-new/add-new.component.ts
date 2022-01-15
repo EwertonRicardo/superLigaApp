@@ -1,3 +1,4 @@
+import { NewsModel } from './../../../../models/news.model';
 /* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -21,7 +22,11 @@ export class AddNewComponent implements OnInit {
 
   public async addNote(): Promise<void> {
     try {
-      console.log(this.newForm.value);
+      const request: NewsModel = {
+        title: this.newForm.get('title').value,
+        description: this.newForm.get('description').value,
+        publishedDate: new Date().getTime()
+      };
     } catch (error) {
       console.error(error);
     }
