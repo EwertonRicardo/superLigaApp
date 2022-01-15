@@ -1,3 +1,4 @@
+import { AddNewComponent } from './component/add-new/add-new.component';
 import { NewDetailComponent } from './component/new-detail/new-detail.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,6 +18,10 @@ import { SharedComponentsModule } from './../../components/shared-components.mod
     NewsPageRoutingModule,
     SharedComponentsModule
   ],
-  declarations: [NewsPage, NewDetailComponent]
+  declarations: [
+    NewsPage,
+    NewDetailComponent,
+    AddNewComponent
+  ]
 })
 export class NewsPageModule {}
