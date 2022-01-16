@@ -1,3 +1,4 @@
+import { LoadingService } from './../../../../services/loading/loading.service';
 import { NewsModel } from './../../../../models/news.model';
 /* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,8 @@ export class AddNewComponent implements OnInit {
 
   constructor(
     private newsService: NewsService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -25,24 +27,23 @@ export class AddNewComponent implements OnInit {
 
   public async addNote(): Promise<void> {
     try {
+      await this.loadingService.present();
+
       const request: NewsModel = {
         title: this.newForm.get('title').value,
         description: this.newForm.get('description').value,
         publishedDate: new Date().getTime()
       };
-      console.log(request);
 
-      this.newsService.create(request)
-      .then(() => {
-        console.log('salvo');
-      }).catch((err) => {
-        console.log(err);
-      });
+      await this.newsService.create(request);
 
     } catch (error) {
       console.error(error);
+    } finally {
+      this.loadingService.dismiss();
     }
   }
+
   private _createForm(): void {
     this.newForm = this._formBuilder.group({
       title: ['', Validators.required],
