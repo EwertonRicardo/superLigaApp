@@ -1,9 +1,11 @@
+import { ToastService } from './../../../../services/toast/toast.service';
 import { LoadingService } from './../../../../services/loading/loading.service';
 import { NewsModel } from './../../../../models/news.model';
 /* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewsService } from './../../../../services/news/news.service';
+import { MessagesEnum } from 'src/app/enums/messages.enum';
 
 @Component({
   selector: 'app-add-new',
@@ -18,7 +20,8 @@ export class AddNewComponent implements OnInit {
   constructor(
     private newsService: NewsService,
     private _formBuilder: FormBuilder,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -37,6 +40,7 @@ export class AddNewComponent implements OnInit {
 
       await this.newsService.create(request);
       this.newForm.reset();
+      await this.toastService.showToast(MessagesEnum.newsAdded, 'toast-success');
     } catch (error) {
       console.error(error);
     } finally {
