@@ -84,3 +84,13 @@ ion-button.custom-button {
 .button-margin {
     margin-top: 32px;
 }
+
+// FOR LOADING
+ion-spinner {
+    color: rgba(45, 112, 229, 1) !important;
+}
+
+.loading-wrapper.sc-ion-loading-md {
+    background: transparent;
+    box-shadow: none;
+}
