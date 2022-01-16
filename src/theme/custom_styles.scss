@@ -94,3 +94,21 @@ ion-spinner {
     background: transparent;
     box-shadow: none;
 }
+
+// FOR TOAST
+
+.toast-error {
+    --background: var(--ion-color-danger-tint);
+    --color:white !important;
+    --button-color: #ffff;
+}
+
+.toast-success {
+    --background: rgba(45, 112, 229, 1);
+    --color:white !important;
+    --button-color: #ffff;
+}
+
+.toast-error .button-inner {
+    color:  white!important;
+}
