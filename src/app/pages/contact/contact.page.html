@@ -4,27 +4,13 @@
 
   <div class="container">
     <ion-list mode="md">
-      <ion-item>
+      <ion-item *ngFor="let contact of contacts">
         <ion-label>
-          <p>(81) 98672-0432 / (81) 98749-5408</p>
-          <!-- <p>(81) 98749-5408</p> -->
+          <p>{{contact.contact}}</p>
         </ion-label>
-        <ion-icon name="call" slot="start"></ion-icon>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>
-          <p>desportivope@hotmail.com</p>
-        </ion-label>
-        <ion-icon name="mail" slot="start"></ion-icon>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>
-          <p>@ligapernambucanadevoleibol</p>
-        </ion-label>
-        <ion-icon name="logo-instagram" slot="start"></ion-icon>
+        <ion-icon name="{{contact.icon}}" slot="start"></ion-icon>
       </ion-item>
     </ion-list>
+
   </div>
 </ion-content>

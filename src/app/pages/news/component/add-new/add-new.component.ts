@@ -2,17 +2,20 @@ import { NewsModel } from './../../../../models/news.model';
 /* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NewsService } from './../../../../services/news/news.service';
 
 @Component({
   selector: 'app-add-new',
   templateUrl: './add-new.component.html',
   styleUrls: ['./add-new.component.scss'],
 })
+
 export class AddNewComponent implements OnInit {
 
   newForm: FormGroup;
 
   constructor(
+    private newsService: NewsService,
     private _formBuilder: FormBuilder
   ) { }
 
@@ -27,6 +30,15 @@ export class AddNewComponent implements OnInit {
         description: this.newForm.get('description').value,
         publishedDate: new Date().getTime()
       };
+      console.log(request);
+
+      this.newsService.create(request)
+      .then(() => {
+        console.log('salvo');
+      }).catch((err) => {
+        console.log(err);
+      });
+
     } catch (error) {
       console.error(error);
     }
