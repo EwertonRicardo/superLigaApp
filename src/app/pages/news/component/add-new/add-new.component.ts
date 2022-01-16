@@ -36,7 +36,7 @@ export class AddNewComponent implements OnInit {
       };
 
       await this.newsService.create(request);
-
+      this.newForm.reset();
     } catch (error) {
       console.error(error);
     } finally {
