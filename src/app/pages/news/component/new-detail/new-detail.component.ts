@@ -1,3 +1,4 @@
+import { NewsModel } from './../../../../models/news.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewDetailComponent implements OnInit {
 
+  newDetail: NewsModel;
   constructor( ) { }
 
   ngOnInit() {}

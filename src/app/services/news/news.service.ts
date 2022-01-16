@@ -47,7 +47,12 @@ export class NewsService {
         console.log('ATUALIZADO');
       }).catch(error => console.log(error));;
   }
-  delete(id: string) {
-    this.ngFirestore.doc('news/' + id).delete();
+
+  async delete(id: string): Promise<void> {
+    try {
+      await this.ngFirestore.doc('news/' + id).delete();
+    } catch (error) {
+      throw error;
+    }
   }
 }

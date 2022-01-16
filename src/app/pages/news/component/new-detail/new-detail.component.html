@@ -2,8 +2,8 @@
 
 <ion-content>
   <div class="container">
-    <h3>Title</h3>
-    <p class="posted-date">Postado em 23/02/1998 00:00</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores porro vel architecto unde nemo quaerat, voluptatum voluptatibus, omnis dolores deserunt quis eaque voluptas quidem mollitia eius labore nihil eligendi officiis?</p>
+    <h3>{{ newDetail.title }}</h3>
+    <p class="posted-date">Postado em {{newDetail.publishedDate | date:'dd/MM/yyyy'}} - {{newDetail.publishedDate | date:'H:mm'}}</p>
+    <p>{{ newDetail.description}}</p>
   </div>
 </ion-content>
