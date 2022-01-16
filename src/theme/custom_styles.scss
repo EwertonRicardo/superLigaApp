@@ -48,3 +48,39 @@ ion-fab {
         --background: rgba(45, 112, 229, 1);
     }
 }
+
+form {
+    margin-top: 32px;
+}
+
+ion-input, ion-textarea {
+    border: 1px solid #DFE4EB; 
+    color: var(--ion-color-medium-tint)  !important;
+    border-radius: 7px;
+    margin-top: 10px;
+    font-family: "Gilroy-bold" !important;
+
+    --padding-start: 10px  !important;
+    --padding-end: 10px  !important;
+}
+
+ion-label{
+    color:var(--ion-color-medium-shade);
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+ion-button.custom-button {
+    --background: linear-gradient(80deg, rgba(45, 112, 229, 1) 35%, rgba(14, 59, 140, 1) 100%) !important;
+    --color: var(--ion-color-light)!important;
+    --background-activated: linear-gradient(80deg, rgba(45, 112, 229, 1) 35%, rgba(14, 59, 140, 1) 100%) !important;
+    height: 50px;
+    --border-radius: 10px;
+    width: 100%;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.button-margin {
+    margin-top: 32px;
+}

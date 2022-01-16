@@ -1,0 +1,50 @@
+<app-header [hasMenu]="false" [hasCloseOption]="true"></app-header>
+
+<ion-content>
+  <form [formGroup]="gameForm">
+    <ion-row class="ion-justify-content-center cpf-input">
+        <ion-col size="11">
+            <ion-label>Número do jogo</ion-label>
+            <ion-input type="text" formControlName="gameNumber"></ion-input>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="11">
+            <ion-label>Primeira equipe</ion-label>
+            <ion-input type="text" formControlName="fisrtTeam"></ion-input>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="11">
+            <ion-label>Segunda equipe</ion-label>
+            <ion-input type="text" formControlName="secondTeam"></ion-input>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="11">
+            <ion-label>Data do jogo</ion-label>
+            <ion-input type="text" formControlName="gameDate"></ion-input>
+        </ion-col>
+    </ion-row>
+
+    <!-- <ion-row class="ion-justify-content-center">
+        <ion-col size="11">
+            <ion-label>Horário do jogo</ion-label>
+            <ion-input type="text" formControlName=""></ion-input>
+        </ion-col>
+    </ion-row> -->
+
+    <ion-datetime value="1990-02-19" placeholder="Select Date"></ion-datetime> 
+    <ion-datetime display-format="HH:mm" picker-format="HH:mm" value="1990-02-19T07:43Z"></ion-datetime>
+
+</form>
+
+<ion-row class="ion-justify-content-center button-margin">
+    <ion-col size="11">
+        <ion-button class="custom-button" (click)="addGame()">Adicionar Jogo</ion-button>
+    </ion-col>
+</ion-row>
+</ion-content>
