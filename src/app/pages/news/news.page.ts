@@ -23,9 +23,10 @@ export class NewsPage implements OnInit {
     await this.getNews();
   }
 
-  public async openNewDetail(): Promise<void> {
+  public async openNewDetail(newDetail: NewsModel): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: NewDetailComponent,
+      componentProps: { newDetail },
     });
 
     await modal.present();
@@ -37,6 +38,18 @@ export class NewsPage implements OnInit {
     });
 
     await modal.present();
+  }
+
+  public async deleteNew(newID: string): Promise<void> {
+    try {
+      await this.loadingService.present();
+
+      await this.newsService.delete(newID);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingService.dismiss();
+    }
   }
 
   private async getNews(): Promise<void> {
