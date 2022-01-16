@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 import { NewsModel } from './../../models/news.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +14,33 @@ export class NewsService {
     private ngFirestore: AngularFirestore
   ) { }
 
-  create(newDetail: NewsModel) {
-    return this.ngFirestore.collection('news').add(newDetail);
+  async create(newDetail: NewsModel): Promise<void> {
+    try {
+      await this.ngFirestore.collection('news').add(newDetail);
+    } catch (error) {
+      throw error;
+    }
   }
-  getNews() {
-    return this.ngFirestore.collection('news').snapshotChanges();
+  getNews(): Observable<NewsModel[]> {
+    try {
+      const newsResponse = this.ngFirestore.collection('news').snapshotChanges()
+      .pipe(
+        map(
+          (data) => data.map(d => ({
+            id: d.payload.doc.id,
+            ...d.payload.doc.data() as NewsModel
+          }))
+        )
+      );
+      return newsResponse;
+    } catch (error) {
+      throw error;
+    }
   }
-  getTask(id) {
-    return this.ngFirestore.collection('news').doc(id).valueChanges();
-  }
+
+  // getTask(id) {
+  //   return this.ngFirestore.collection('news').doc(id).valueChanges();
+  // }
   update(id, newDetail: NewsModel) {
     this.ngFirestore.collection('news').doc(id).update(newDetail)
       .then(() => {
