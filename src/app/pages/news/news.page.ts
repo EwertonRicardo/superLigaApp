@@ -1,3 +1,4 @@
+import { LoadingService } from './../../services/loading/loading.service';
 import { AddNewComponent } from './component/add-new/add-new.component';
 import { NewDetailComponent } from './component/new-detail/new-detail.component';
 import { Component, OnInit } from '@angular/core';
@@ -14,17 +15,12 @@ export class NewsPage implements OnInit {
   news: NewsModel[];
   constructor(
     private newsService: NewsService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private loadingService: LoadingService
   ) { }
 
-  ngOnInit() {
-    this.newsService.getNews().subscribe((res) => {
-      this.news = res.map((t) => ({
-          id: t.payload.doc.id,
-          ...t.payload.doc.data() as NewsModel
-        }));
-        console.log(this.news);
-    });
+  async ngOnInit() {
+    await this.getNews();
   }
 
   public async openNewDetail(): Promise<void> {
@@ -41,5 +37,18 @@ export class NewsPage implements OnInit {
     });
 
     await modal.present();
+  }
+
+  private async getNews(): Promise<void> {
+    try {
+      await this.loadingService.present();
+
+      this.newsService.getNews().subscribe(result => this.news = result);
+
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingService.dismiss();
+    }
   }
 }
