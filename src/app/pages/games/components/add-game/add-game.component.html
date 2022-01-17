@@ -9,6 +9,13 @@
         </ion-col>
     </ion-row>
 
+    <ion-row class="ion-justify-content-center cpf-input">
+        <ion-col size="11">
+            <ion-label>Local do jogo</ion-label>
+            <ion-input type="text" formControlName="place"></ion-input>
+        </ion-col>
+    </ion-row>
+
     <ion-row class="ion-justify-content-center">
         <ion-col size="11">
             <ion-label>Primeira equipe</ion-label>
@@ -27,6 +34,16 @@
         <ion-col size="11">
             <ion-label>Data do jogo</ion-label>
             <ion-input type="text" formControlName="gameDate"></ion-input>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="11">
+            <ion-label>Gênero</ion-label>
+            <ion-select formControlName="gender">
+                <ion-select-option value="male">Masculino</ion-select-option>
+                <ion-select-option value="female">Feminino</ion-select-option>
+            </ion-select>
         </ion-col>
     </ion-row>
 

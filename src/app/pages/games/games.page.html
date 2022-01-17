@@ -16,16 +16,25 @@
 
         <div class="meetings-example">
           <div class="meeting-wrapper">
-            <ion-card class="meeting-card" mode="ios" *ngFor="let i of [].constructor(10)">
+            <ion-card class="meeting-card" mode="ios" *ngFor="let gameMale of gamesMale">
               <ion-card-content class="meeting-card-content">
                 <ion-row>
                   <ion-col>
-                    <p class="meeting-title">#1</p>
-                    <p class="meeting-title">Seleção recife de volleyball</p>
-                    <p class="meeting-title">Náutico</p>
+                    <p class="meeting-title">{{gameMale.gameNumber}}</p>
+                    <p class="meeting-title">{{gameMale.fisrtTeam}}</p>
+                    <p class="meeting-title">{{gameMale.secondTeam}}</p>
+                    <p class="meeting-hours">
+                      <ion-icon name="location-outline"></ion-icon>
+                      {{gameMale.place}}</p>
                     <p class="meeting-hours">
                       <ion-icon name="time-outline"></ion-icon>
-                      23/02/1998 11:00</p>
+                      {{gameMale.gameDate}}</p>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-text-right action-buttons">
+                  <ion-col class="ion-no-padding">
+                    <ion-icon name="create-outline"></ion-icon>
+                    <ion-icon name="trash-outline" (click)="deleteGame(gameMale.id)"></ion-icon>
                   </ion-col>
                 </ion-row>
               </ion-card-content>
@@ -36,7 +45,36 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'female'">
+      <div class="ion-padding">
 
+        <div class="meetings-example">
+          <div class="meeting-wrapper">
+            <ion-card class="meeting-card" mode="ios" *ngFor="let gameFemale of gamesFemale">
+              <ion-card-content class="meeting-card-content">
+                <ion-row>
+                  <ion-col>
+                    <p class="meeting-title">{{gameFemale.gameNumber}}</p>
+                    <p class="meeting-title">{{gameFemale.fisrtTeam}}</p>
+                    <p class="meeting-title">{{gameFemale.secondTeam}}</p>
+                    <p class="meeting-hours">
+                      <ion-icon name="location-outline"></ion-icon>
+                      {{gameFemale.place}}</p>
+                    <p class="meeting-hours">
+                      <ion-icon name="time-outline"></ion-icon>
+                      {{gameFemale.gameDate}}</p>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-text-right action-buttons">
+                  <ion-col class="ion-no-padding">
+                    <ion-icon name="create-outline"></ion-icon>
+                    <ion-icon name="trash-outline" (click)="deleteGame(gameFemale.id)"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </div>
+      </div>
     </ng-container>
   </div>
 
