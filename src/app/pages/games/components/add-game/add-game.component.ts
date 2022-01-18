@@ -14,6 +14,7 @@ import { MessagesEnum } from 'src/app/enums/messages.enum';
 })
 export class AddGameComponent implements OnInit {
   gameForm: FormGroup;
+  game: GamesModel;
   constructor(
     private _formBuilder: FormBuilder,
     private loadingService: LoadingService,
@@ -48,15 +49,39 @@ export class AddGameComponent implements OnInit {
     }
   }
 
+  public async editGame(): Promise<void> {
+    try {
+      await this.loadingService.present();
+
+      await this.gamesService.updateGame(this.gameForm.value, this.game.id);
+      await this.toastService.showToast(MessagesEnum.gameUpdated, 'toast-success');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingService.dismiss();
+    }
+  }
+
   private _createForm(): void {
-    this.gameForm = this._formBuilder.group({
-      gameNumber: ['', Validators.required],
-      fisrtTeam: ['', Validators.required],
-      secondTeam: ['', Validators.required],
-      gameDate: ['', Validators.required],
-      gender: ['', Validators.required],
-      place: ['', Validators.required],
-    });
+    if (this.game) {
+      this.gameForm = this._formBuilder.group({
+        gameNumber: [this.game.gameNumber, Validators.required],
+        fisrtTeam: [this.game.fisrtTeam, Validators.required],
+        secondTeam: [this.game.secondTeam, Validators.required],
+        gameDate: [this.game.gameDate, Validators.required],
+        gender: [this.game.gender, Validators.required],
+        place: [this.game.place, Validators.required],
+      });
+    } else {
+      this.gameForm = this._formBuilder.group({
+        gameNumber: ['', Validators.required],
+        fisrtTeam: ['', Validators.required],
+        secondTeam: ['', Validators.required],
+        gameDate: ['', Validators.required],
+        gender: ['', Validators.required],
+        place: ['', Validators.required],
+      });
+    }
   }
 
 }

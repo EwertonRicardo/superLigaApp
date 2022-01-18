@@ -54,14 +54,15 @@
         </ion-col>
     </ion-row> -->
 
-    <ion-datetime value="1990-02-19" placeholder="Select Date"></ion-datetime> 
-    <ion-datetime display-format="HH:mm" picker-format="HH:mm" value="1990-02-19T07:43Z"></ion-datetime>
+    <!-- <ion-datetime value="1990-02-19" placeholder="Select Date"></ion-datetime> 
+    <ion-datetime display-format="HH:mm" picker-format="HH:mm" value="1990-02-19T07:43Z"></ion-datetime> -->
 
 </form>
 
 <ion-row class="ion-justify-content-center button-margin">
     <ion-col size="11">
-        <ion-button class="custom-button" (click)="addGame()">Adicionar Jogo</ion-button>
+        <ion-button class="custom-button" (click)="addGame()" *ngIf="!game">Adicionar Jogo</ion-button>
+        <ion-button class="custom-button" (click)="editGame()" *ngIf="game">Editar Jogo</ion-button>
     </ion-col>
 </ion-row>
 </ion-content>

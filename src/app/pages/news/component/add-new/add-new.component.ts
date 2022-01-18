@@ -53,7 +53,6 @@ export class AddNewComponent implements OnInit {
       await this.loadingService.present();
 
       await this.newsService.updateNew(this.newForm.value, this.news.id);
-      this.newForm.reset();
       await this.toastService.showToast(MessagesEnum.newsUpdated, 'toast-success');
     } catch (error) {
       console.error(error);

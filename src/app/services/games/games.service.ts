@@ -36,6 +36,15 @@ export class GamesService {
       throw error;
     }
   }
+
+  async updateGame(game: GamesModel, gameId: string): Promise<void> {
+    try {
+      await this.ngFirestore.collection('games').doc(gameId).update(game);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async delete(id: string): Promise<void> {
     try {
       await this.ngFirestore.doc('games/' + id).delete();

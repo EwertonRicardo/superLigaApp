@@ -15,6 +15,7 @@ export class GamesPage implements OnInit {
   gamesMale: GamesModel[];
   gamesFemale: GamesModel[];
   teamGender = 'male';
+  game: GamesModel;
   constructor(
     private modalCtrl: ModalController,
     private gamesService: GamesService,
@@ -45,6 +46,15 @@ export class GamesPage implements OnInit {
     } finally {
       this.loadingService.dismiss();
     }
+  }
+
+  public async updateGame(game?: GamesModel): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: AddGameComponent,
+      componentProps: { game }
+    });
+
+    await modal.present();
   }
 
   private async getGames(): Promise<void> {
