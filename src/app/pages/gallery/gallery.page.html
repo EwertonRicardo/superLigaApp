@@ -1,0 +1,17 @@
+<app-header title="Galeria de fotos"></app-header>
+
+<ion-content>
+
+  <div class="container">
+    <ion-card  *ngFor="let photo of photos">
+      <img src="{{photo.url}}"/>
+      <ion-card-header>
+        <ion-card-title>{{photo.title}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        {{photo.description}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
