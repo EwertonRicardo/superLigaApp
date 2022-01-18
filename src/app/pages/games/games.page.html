@@ -28,7 +28,7 @@
                       {{gameMale.place}}</p>
                     <p class="meeting-hours">
                       <ion-icon name="time-outline"></ion-icon>
-                      {{gameMale.gameDate}}</p>
+                      {{gameMale.gameDate | date:'dd/MM/yyyy'}} - {{gameMale.gameDate | date:'H:mm'}}</p>
                   </ion-col>
                 </ion-row>
                 <ion-row class="ion-text-right action-buttons">
@@ -61,7 +61,7 @@
                       {{gameFemale.place}}</p>
                     <p class="meeting-hours">
                       <ion-icon name="time-outline"></ion-icon>
-                      {{gameFemale.gameDate}}</p>
+                      {{gameFemale.gameDate | date:'dd/MM/yyyy'}} - {{gameFemale.gameDate | date:'H:mm'}}</p>
                   </ion-col>
                 </ion-row>
                 <ion-row class="ion-text-right action-buttons">

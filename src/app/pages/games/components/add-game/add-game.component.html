@@ -33,14 +33,14 @@
     <ion-row class="ion-justify-content-center">
         <ion-col size="11">
             <ion-label>Data do jogo</ion-label>
-            <ion-input type="text" formControlName="gameDate"></ion-input>
+            <ion-datetime class="select-custom" placeholder="informe a data" displayFormat="MM/DD/YYYY hh:mm" formControlName="gameDate"></ion-datetime>
         </ion-col>
     </ion-row>
 
     <ion-row class="ion-justify-content-center">
         <ion-col size="11">
             <ion-label>Gênero</ion-label>
-            <ion-select formControlName="gender">
+            <ion-select formControlName="gender" placeholder="Selecione um" class="select-custom">
                 <ion-select-option value="male">Masculino</ion-select-option>
                 <ion-select-option value="female">Feminino</ion-select-option>
             </ion-select>
