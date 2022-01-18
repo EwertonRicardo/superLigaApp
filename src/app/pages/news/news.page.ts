@@ -32,9 +32,10 @@ export class NewsPage implements OnInit {
     await modal.present();
   }
 
-  public async openAddDetailModal(): Promise<void> {
+  public async openAddDetailModal(news?: NewsModel): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: AddNewComponent,
+      componentProps: { news }
     });
 
     await modal.present();

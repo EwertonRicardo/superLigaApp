@@ -19,7 +19,8 @@
 
     <ion-row class="ion-justify-content-center button-margin">
         <ion-col size="11">
-            <ion-button class="custom-button" (click)="addNote()">Adicionar</ion-button>
+            <ion-button class="custom-button" (click)="addNote()" *ngIf="!news">Adicionar</ion-button>
+            <ion-button class="custom-button" (click)="editNew()" *ngIf="news">Editar</ion-button>
         </ion-col>
     </ion-row>
 </ion-content>

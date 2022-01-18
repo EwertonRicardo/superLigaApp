@@ -16,7 +16,7 @@ import { MessagesEnum } from 'src/app/enums/messages.enum';
 export class AddNewComponent implements OnInit {
 
   newForm: FormGroup;
-
+  news: NewsModel;
   constructor(
     private newsService: NewsService,
     private _formBuilder: FormBuilder,
@@ -48,11 +48,33 @@ export class AddNewComponent implements OnInit {
     }
   }
 
+  public async editNew(): Promise<void> {
+    try {
+      await this.loadingService.present();
+
+      await this.newsService.updateNew(this.newForm.value, this.news.id);
+      this.newForm.reset();
+      await this.toastService.showToast(MessagesEnum.newsUpdated, 'toast-success');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingService.dismiss();
+    }
+  }
   private _createForm(): void {
-    this.newForm = this._formBuilder.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-    });
+
+    if (this.news) {
+      this.newForm = this._formBuilder.group({
+        title: [this.news.title, Validators.required],
+        description: [this.news.description, Validators.required],
+      });
+    } else {
+      this.newForm = this._formBuilder.group({
+        title: ['', Validators.required],
+        description: ['', Validators.required],
+      });
+    }
+
   }
 
 }

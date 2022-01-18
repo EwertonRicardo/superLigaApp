@@ -41,11 +41,12 @@ export class NewsService {
   // getTask(id) {
   //   return this.ngFirestore.collection('news').doc(id).valueChanges();
   // }
-  update(id, newDetail: NewsModel) {
-    this.ngFirestore.collection('news').doc(id).update(newDetail)
-      .then(() => {
-        console.log('ATUALIZADO');
-      }).catch(error => console.log(error));;
+  async updateNew(newDetail: NewsModel, newsId: string): Promise<void> {
+   try {
+    await this.ngFirestore.collection('news').doc(newsId).update({title: newDetail.title, description: newDetail.description});
+   } catch (error) {
+     throw error;
+   }
   }
 
   async delete(id: string): Promise<void> {
