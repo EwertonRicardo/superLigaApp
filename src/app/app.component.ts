@@ -10,7 +10,7 @@ export class AppComponent {
     { title: 'Equipes', url: '/teams', icon: 'people' },
     { title: 'Jogos', url: '/games', icon: 'game-controller' },
     { title: 'Ranking', url: '/folder/Archived', icon: 'star' },
-    { title: 'Galeria de fotos', url: '/folder/Trash', icon: 'images' },
+    { title: 'Galeria de fotos', url: '/gallery', icon: 'images' },
     { title: 'Regulamento', url: '/folder/Spam', icon: 'document-text' },
     { title: 'Contato', url: '/contact', icon: 'call' },
     { title: 'Patrocianadores', url: '/sponsors', icon: 'warning' },
