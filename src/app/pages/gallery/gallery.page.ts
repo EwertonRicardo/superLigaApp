@@ -1,7 +1,9 @@
+import { AddPhotoComponent } from './components/add-photo/add-photo.component';
 import { Component, OnInit } from '@angular/core';
 import { GalleryService } from './../../services/gallery/gallery.service';
 import { LoadingService } from './../../services/loading/loading.service';
 import { PhotosModel } from './../../models/photos.model';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-gallery',
@@ -12,11 +14,20 @@ export class GalleryPage implements OnInit {
   photos: PhotosModel[];
   constructor(
     private galleryService: GalleryService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private modalCtrl: ModalController
   ) {}
 
   async ngOnInit() {
     await this.getPhotos();
+  }
+
+  public async openAddPhotoModal(): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: AddPhotoComponent
+    });
+
+    await modal.present();
   }
 
   private async getPhotos(): Promise<void> {

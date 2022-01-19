@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { GalleryPageRoutingModule } from './gallery-routing.module';
 
 import { GalleryPage } from './gallery.page';
+import { AddPhotoComponent } from './components/add-photo/add-photo.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { GalleryPage } from './gallery.page';
     GalleryPageRoutingModule,
     SharedComponentsModule
   ],
-  declarations: [GalleryPage]
+  declarations: [GalleryPage, AddPhotoComponent]
 })
 export class GalleryPageModule {}
