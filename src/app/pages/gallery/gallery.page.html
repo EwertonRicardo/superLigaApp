@@ -1,9 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>gallery</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Galeria"></app-header>
 
 <ion-content>
-
+  <ion-grid class="ion-padding-vertical">
+    <ion-row class="ion-justify-content-center ion-padding-top" *ngFor="let i of [].constructor(10)">
+      <ion-col size="11.5">
+        <article>
+          <img src="https://redesoberano.com.br/wp-content/uploads/2021/06/As-praias-mais-proximas-do-Centro-de-Porto-Seguro.jpg">
+          <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</h1>
+          <div class="article-info">
+            <time>01 January 2019</time>
+           </div>
+        </article>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
