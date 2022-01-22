@@ -4,23 +4,22 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PhotosModel } from './../../../../models/photos.model';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { LoadingService } from './../../../../services/loading/loading.service';
+import { GalleryService } from './../../../../services/gallery/gallery.service';
+import { ToastService } from './../../../../services/toast/toast.service';
+import { MessagesEnum } from 'src/app/enums/messages.enum';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-
-
-export interface FILE {
-  name: string;
-  filepath: string;
-  size: number;
-}
 @Component({
   selector: 'app-add-photo',
   templateUrl: './add-photo.component.html',
   styleUrls: ['./add-photo.component.scss'],
 })
+
 export class AddPhotoComponent implements OnInit {
   photoForm: FormGroup;
   photo: PhotosModel;
+  files;
 
   ngFireUploadTask: AngularFireUploadTask;
 
@@ -30,75 +29,103 @@ export class AddPhotoComponent implements OnInit {
 
   fileUploadedPath: Observable<string>;
 
-  files: Observable<FILE[]>;
-
   fileName: string;
   fileSize: number;
 
   isImgUploading: boolean;
   isImgUploaded: boolean;
 
-  private ngFirestoreCollection: AngularFirestoreCollection<FILE>;
+  private ngFirestoreCollection: AngularFirestoreCollection<PhotosModel>;
   constructor(
+    private _formBuilder: FormBuilder,
     private angularFirestore: AngularFirestore,
-    private angularFireStorage: AngularFireStorage
+    private angularFireStorage: AngularFireStorage,
+    private galleryService: GalleryService,
+    private toastService: ToastService,
+    private loadingService: LoadingService,
   ) {
     this.isImgUploading = false;
     this.isImgUploaded = false;
-    this.ngFirestoreCollection = angularFirestore.collection<FILE>('filesCollection');
-    this.files = this.ngFirestoreCollection.valueChanges();
+    this.ngFirestoreCollection = angularFirestore.collection<PhotosModel>('gallery');
    }
 
-  ngOnInit() {}
-
-  fileUpload(event: FileList) {
-      const file = event.item(0);
-
-      if (file.type.split('/')[0] !== 'image') {
-        console.log('File type is not supported!');
-        return;
-      }
-
-      this.isImgUploading = true;
-      this.isImgUploaded = false;
-
-      this.fileName = file.name;
-
-      const fileStoragePath = `filesStorage/${new Date().getTime()}_${file.name}`;
-
-      const imageRef = this.angularFireStorage.ref(fileStoragePath);
-
-      this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, file);
-
-      this.progressNum = this.ngFireUploadTask.percentageChanges();
-      this.progressSnapshot = this.ngFireUploadTask.snapshotChanges().pipe(
-        finalize(() => {
-          this.fileUploadedPath = imageRef.getDownloadURL();
-          this.fileUploadedPath.subscribe(resp=>{
-            this.fileStorage({
-              name: file.name,
-              filepath: resp,
-              size: this.fileSize
-            });
-            this.isImgUploading = false;
-            this.isImgUploaded = true;
-          },error => {
-            console.log(error);
-          });
-        }),
-        tap(snap => {
-            this.fileSize = snap.totalBytes;
-        })
-      );
+  ngOnInit() {
+    this._createForm();
   }
 
+  async fileUpload(event) {
+    this.files =  event.target.files;
+  }
 
-  fileStorage(image: FILE) {
-      const imgId = this.angularFirestore.createId();
-      this.ngFirestoreCollection.doc(imgId).set(image).then(data => {
-        console.log(data);
-      }).catch(error => {
-        console.log(error);
+  sendFiles() {
+    const filesPath = [];
+    const promises: AngularFireUploadTask[] = [];
+    let counter = 0;
+    return new Promise(resolve => {
+    for (const file of this.files) {
+        if (file.type.split('/')[0] !== 'image') {
+          console.log('File type is not supported!');
+          return;
+        }
+        this.isImgUploading = true;
+        this.isImgUploaded = false;
+        this.fileName = file.name;
+        const fileStoragePath = `filesStorage/${new Date().getTime()}_${file.name}`;
+        const imageRef = this.angularFireStorage.ref(fileStoragePath);
+
+        this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, file);
+        this.progressNum = this.ngFireUploadTask.percentageChanges();
+        this.ngFireUploadTask.snapshotChanges().pipe(
+          finalize(() => {
+            imageRef.getDownloadURL().subscribe((url) => {
+              console.log(url);
+              filesPath.push(url);
+              console.log(filesPath);
+              counter++;
+              if(counter === this.files.length){
+                  resolve(filesPath);
+              }
+            });
+          }),
+          tap(snap => {
+              this.fileSize = snap.totalBytes;
+          })
+        ).subscribe();
+      }
+    });
+  }
+
+  public async addPhoto(): Promise<void> {
+    try {
+      await this.loadingService.present();
+
+      const files = await this.sendFiles();
+
+      const request: PhotosModel = {
+        title:  this.photoForm.get('title').value,
+        filespath:  files,
+        publishedDate:  new Date().getTime()
+      };
+
+      await this.galleryService.create(request);
+      this.photoForm.reset();
+      await this.toastService.showToast(MessagesEnum.gamesAdded, 'toast-success');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingService.dismiss();
+    }
+  }
+
+  private _createForm(): void {
+    if (this.photo) {
+      this.photoForm = this._formBuilder.group({
+        title: [this.photo.id, Validators.required],
       });
+    } else {
+      this.photoForm = this._formBuilder.group({
+        title: ['', Validators.required],
+      });
+    }
   }
 }

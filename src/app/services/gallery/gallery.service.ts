@@ -29,4 +29,12 @@ export class GalleryService {
       throw error;
     }
   }
+
+  async create(photo: PhotosModel): Promise<void> {
+    try {
+      await this.ngFirestore.collection('gallery').add(photo);
+    } catch (error) {
+      throw error;
+    }
+  }
 }

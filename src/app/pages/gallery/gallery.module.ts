@@ -1,7 +1,7 @@
 import { SharedComponentsModule } from './../../components/shared-components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -15,6 +15,7 @@ import { AddPhotoComponent } from './components/add-photo/add-photo.component';
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     GalleryPageRoutingModule,
     SharedComponentsModule
   ],
