@@ -11,14 +11,17 @@ export class SponsorsPage implements OnInit {
     {
       url: '../../../assets/imgs/sponsors/usina.png',
     },
+    // {
+    //   url: '../../../assets/imgs/sponsors/liga.jpg',
+    // },
     {
-      url: '../../../assets/imgs/sponsors/liga.jpg',
-    },
-    {
-      url: '../../../assets/imgs/sponsors/cref.png',
+      url: '../../../assets/imgs/sponsors/volei-pe.jpg',
     },
     {
       url: '../../../assets/imgs/sponsors/secretaria-esportes.png',
+    },
+    {
+      url: '../../../assets/imgs/sponsors/cref.png',
     },
     {
       url: '../../../assets/imgs/sponsors/marias-quadrado.png',
@@ -26,9 +29,6 @@ export class SponsorsPage implements OnInit {
     {
       url: '../../../assets/imgs/sponsors/asa-branca.png',
     },
-    {
-      url: '../../../assets/imgs/sponsors/volei-pe.jpg',
-    }
   ];
   constructor() { }
 
