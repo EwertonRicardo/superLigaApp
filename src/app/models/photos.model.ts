@@ -1,6 +1,6 @@
 export interface PhotosModel {
     id?: string;
     title: string;
-    description: string;
-    url: string;
+    filespath: any;
+    publishedDate: number;
 }
