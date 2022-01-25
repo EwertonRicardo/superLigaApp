@@ -11,6 +11,11 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./gallery.page.scss'],
 })
 export class GalleryPage implements OnInit {
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400,
+    loop: true,
+  };
   photos: PhotosModel[];
   constructor(
     private galleryService: GalleryService,
