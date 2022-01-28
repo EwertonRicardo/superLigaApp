@@ -20,6 +20,7 @@ export class AddPhotoComponent implements OnInit {
   photoForm: FormGroup;
   photo: PhotosModel;
   files;
+  filesList;
 
   ngFireUploadTask: AngularFireUploadTask;
 
@@ -78,9 +79,11 @@ export class AddPhotoComponent implements OnInit {
         this.ngFireUploadTask.snapshotChanges().pipe(
           finalize(() => {
             imageRef.getDownloadURL().subscribe((url) => {
-              console.log(url);
-              filesPath.push(url);
-              console.log(filesPath);
+              if(this.filesList){
+                this.filesList.push(url);
+              }else{
+                filesPath.push(url);
+              }
               counter++;
               if(counter === this.files.length){
                   resolve(filesPath);
@@ -117,11 +120,36 @@ export class AddPhotoComponent implements OnInit {
     }
   }
 
+  public async updateGallery(): Promise<void> {
+    try {
+      await this.loadingService.present();
+
+      await this.sendFiles();
+
+      const request: PhotosModel = {
+        title:  this.photoForm.get('title').value,
+        filespath:  this.filesList,
+        publishedDate:  new Date().getTime()
+      };
+      await this.galleryService.update(request, this.photo.id);
+      await this.toastService.showToast(MessagesEnum.gamesAdded, 'toast-success');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingService.dismiss();
+    }
+  }
+
+  public removeImageList(index: string) {
+    this.filesList.splice(index,1);
+  }
+
   private _createForm(): void {
     if (this.photo) {
       this.photoForm = this._formBuilder.group({
-        title: [this.photo.id, Validators.required],
+        title: [this.photo.title, Validators.required],
       });
+      this.filesList = this.photo.filespath;
     } else {
       this.photoForm = this._formBuilder.group({
         title: ['', Validators.required],

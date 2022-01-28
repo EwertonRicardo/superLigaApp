@@ -18,12 +18,23 @@
           <input type="file" (change)="fileUpload($event)" multiple/>
         </ion-button>
       </ion-card>
+
+      <div *ngFor="let path of filesList; index as i">
+            <div class="container">
+              <img src="{{path}}" alt="" />
+              <ion-row class="ion-text-right action-buttons">
+                <ion-col class="ion-no-padding">
+                  <ion-icon name="trash-outline" class="icon-action" (click)="removeImageList(i)"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </div>
+      </div>
   
     </form>
     <ion-row class="ion-justify-content-center button-margin">
       <ion-col size="11">
-          <ion-button class="custom-button" (click)="addPhoto()" *ngIf="!photo">Adicionar Foto</ion-button>
-          <ion-button class="custom-button" *ngIf="photo">Editar Foto</ion-button>
+          <ion-button class="custom-button" (click)="addPhoto()" *ngIf="!photo">Adicionar Galeria</ion-button>
+          <ion-button class="custom-button" (click)="updateGallery()"  *ngIf="photo">Editar Galeria</ion-button>
       </ion-col>
     </ion-row>
 </ion-content>

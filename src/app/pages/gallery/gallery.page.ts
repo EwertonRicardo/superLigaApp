@@ -27,12 +27,24 @@ export class GalleryPage implements OnInit {
     await this.getPhotos();
   }
 
-  public async openAddPhotoModal(): Promise<void> {
+  public async openAddPhotoModal(photo?: PhotosModel): Promise<void> {
     const modal = await this.modalCtrl.create({
-      component: AddPhotoComponent
+      component: AddPhotoComponent,
+      componentProps: { photo }
     });
-
     await modal.present();
+  }
+
+  public async deleteGallery(gallery: string): Promise<void> {
+    try {
+      await this.loadingService.present();
+
+      await this.galleryService.delete(gallery);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingService.dismiss();
+    }
   }
 
   private async getPhotos(): Promise<void> {
@@ -47,4 +59,5 @@ export class GalleryPage implements OnInit {
       this.loadingService.dismiss();
     }
   }
+
 }

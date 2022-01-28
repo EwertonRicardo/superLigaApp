@@ -37,4 +37,25 @@ export class GalleryService {
       throw error;
     }
   }
+
+  async update(gallery: PhotosModel, galleryId: string): Promise<void> {
+    try {
+      await this.ngFirestore.collection('gallery').doc(galleryId).update(
+        {
+          title: gallery.title,
+          filespath: gallery.filespath, publishedDate: gallery.publishedDate
+        }
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async delete(id: string): Promise<void> {
+    try {
+      await this.ngFirestore.doc('gallery/' + id).delete();
+    } catch (error) {
+      throw error;
+    }
+  }
 }

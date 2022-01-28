@@ -16,8 +16,8 @@
           </div>
           <ion-row class="ion-text-right action-buttons">
             <ion-col class="ion-no-padding">
-              <ion-icon name="create-outline" class="icon-action"></ion-icon>
-              <ion-icon name="trash-outline" class="icon-action"></ion-icon>
+              <ion-icon name="create-outline" class="icon-action" (click)="openAddPhotoModal(photo)"></ion-icon>
+              <ion-icon name="trash-outline" class="icon-action" (click)="deleteGallery(photo.id)"></ion-icon>
             </ion-col>
           </ion-row>
         </article>
