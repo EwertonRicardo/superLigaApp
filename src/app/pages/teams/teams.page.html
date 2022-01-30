@@ -13,39 +13,23 @@
 
   <div class="container" [ngSwitch]="teamGender">
     <ng-container *ngSwitchCase="'male'">
-     <ion-list *ngFor="let team of teams" (click)="team.isShow= !team.isShow" class="ion-no-padding">
-      <ion-item button detailIcon="false" detail="false">
-        <ion-label>
-          <p>{{ team.name }}</p>
-        </ion-label>
-
-        <ion-icon [name]="!team.isShow ? 'chevron-down-outline' : 'chevron-up-outline'" slot="end"></ion-icon>
-      </ion-item>
-      
-      <ng-container *ngIf="team.isShow">
-        <div class="players-name">
-          <p *ngFor="let player of team.players">{{ player }}</p>
-        </div>
-      </ng-container>
-     </ion-list>
+      <div class="content">
+        <ion-list lines="none" *ngFor="let i of [].constructor(10)">
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img src="../../../assets/imgs/teams/feminine/caruaru-logo.png" />
+            </ion-thumbnail>
+            <ion-label>
+              <h3>Caruaru</h3>
+              <p>Caruaru - Pe</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
     </ng-container>
 
     <ng-container *ngSwitchCase="'female'">
-      <ion-list *ngFor="let team of teams" (click)="team.isShow= !team.isShow" class="ion-no-padding">
-       <ion-item button detailIcon="false" detail="false">
-         <ion-label>
-           <p>{{ team.name }}</p>
-         </ion-label>
- 
-         <ion-icon [name]="!team.isShow ? 'chevron-down-outline' : 'chevron-up-outline'" slot="end"></ion-icon>
-       </ion-item>
-       
-       <ng-container *ngIf="team.isShow">
-         <div class="players-name">
-           <p *ngFor="let player of team.players">{{ player }}</p>
-         </div>
-       </ng-container>
-      </ion-list>
+
      </ng-container>
   </div>
 </ion-content>

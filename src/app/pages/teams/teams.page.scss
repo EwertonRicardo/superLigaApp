@@ -2,33 +2,28 @@
     margin-top: 20px;
 }
 
-ion-item ion-icon {
-    font-size: 20px;
-    color: var(--ion-color-medium-shade);
+.content {
+    padding: 0 10px;
 }
 
-ion-list .players-name {
-    padding-left: 16px;
-
-    white-space: nowrap;
-    overflow: hidden;
-
-    p {
-        color: var(--ion-color-medium-tint);
-        margin: 8px 0 8px 0;
-        font-size: 12px;
-        text-transform: capitalize;
-
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
+ion-list {
+    box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
-ion-list.ios .players-name {
-    padding-left: 20px;
+ion-list.ios {
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 ion-item ion-label p {
 
+    color: var(--ion-color-medium-tint);
     text-transform: capitalize;
+    white-space: pre-line;
+}
+
+ion-item ion-thumbnail {
+    height: 65px;
 }
