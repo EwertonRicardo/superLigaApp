@@ -132,7 +132,7 @@ export class AddPhotoComponent implements OnInit {
         publishedDate:  new Date().getTime()
       };
       await this.galleryService.update(request, this.photo.id);
-      await this.toastService.showToast(MessagesEnum.gamesAdded, 'toast-success');
+      await this.toastService.showToast(MessagesEnum.galleryUpdated, 'toast-success');
     } catch (error) {
       console.error(error);
     } finally {
