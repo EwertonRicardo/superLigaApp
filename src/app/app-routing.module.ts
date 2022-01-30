@@ -34,9 +34,14 @@ const routes: Routes = [
   {
     path: 'games',
     loadChildren: () => import('./pages/games/games.module').then( m => m.GamesPageModule)
-  },  {
+  },
+  {
     path: 'gallery',
     loadChildren: () => import('./pages/gallery/gallery.module').then( m => m.GalleryPageModule)
+  },
+  {
+    path: 'regulations',
+    loadChildren: () => import('./pages/regulations/regulations.module').then( m => m.RegulationsPageModule)
   }
 
 ];
