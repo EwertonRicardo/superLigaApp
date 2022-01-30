@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { femaleTeam, maleTeams } from './teams.data';
 @Component({
   selector: 'app-add-team',
   templateUrl: './add-team.component.html',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTeamComponent implements OnInit {
 
+  fameleTeams = femaleTeam;
+  maleTeams = maleTeams;
   constructor() { }
 
   ngOnInit() {}

@@ -1,26 +1,49 @@
 <app-header [hasMenu]="false" [hasCloseOption]="true"></app-header>
 
 <ion-content>
-  <form >
-      <ion-row class="ion-justify-content-center">
-          <ion-col size="11">
-              <ion-label>Nome da equipe</ion-label>
-              <ion-input type="text"></ion-input>
-          </ion-col>
-      </ion-row>
+  <form>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-label>Nome da equipe</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-col>
+    </ion-row>
 
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="11">
-            <ion-label>Estado</ion-label>
-            <ion-input type="text"></ion-input>
-        </ion-col>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-label>Estado</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-label>Gênero</ion-label>
+        <ion-select placeholder="Selecione um" interface="action-sheet" class="select-custom">
+          <ion-select-option value="male">Masculino</ion-select-option>
+          <ion-select-option value="female">Feminino</ion-select-option>
+        </ion-select>
+      </ion-col>
     </ion-row>
   </form>
 
-  <ion-row class="ion-justify-content-center button-margin">
+  <ng-container>
+    <ion-row class="ion-justify-content-center">
       <ion-col size="11">
-          <ion-button class="custom-button" >Adicionar</ion-button>
-          <ion-button class="custom-button" >Editar</ion-button>
+        <ion-label>Selecione o time</ion-label>
       </ion-col>
+      <ion-col size="11" class="image-content">
+        <ion-avatar *ngFor="let i of maleTeams">
+          <img [src]="i.imageUrl">
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+
+  <ion-row class="ion-justify-content-center button-margin">
+    <ion-col size="11">
+      <ion-button class="custom-button">Adicionar</ion-button>
+      <!-- <ion-button class="custom-button">Editar</ion-button> -->
+    </ion-col>
   </ion-row>
 </ion-content>
