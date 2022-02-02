@@ -14,9 +14,12 @@ import { ModalController } from '@ionic/angular';
 })
 export class GalleryPage implements OnInit {
   slideOpts = {
-    initialSlide: 1,
+    initialSlide: 0,
     speed: 400,
     loop: true,
+    autoplay: true,
+    centeredSlides: true,
+    spaceBetween: 30
   };
   photos: PhotosModel[];
   constructor(
@@ -55,8 +58,11 @@ export class GalleryPage implements OnInit {
     try {
       await this.loadingService.present();
 
-      this.galleryService.getPhotos().subscribe(result => this.photos = result);
-
+      this.galleryService.getPhotos().subscribe(result => {
+        this.photos = result;
+        console.log(this.photos)
+      });
+      
     } catch (error) {
       console.error(error);
     } finally {

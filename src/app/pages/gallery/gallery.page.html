@@ -2,10 +2,10 @@
 
 <ion-content>
   <ion-grid class="ion-padding-vertical">
-    <ion-row class="ion-justify-content-center ion-padding-top container-gallery" *ngFor="let photo of photos">
+    <ion-row class="ion-justify-content-center ion-padding-top border" *ngFor="let photo of photos">
       <ion-col size="11.5">
         <article>
-          <ion-slides pager="true" [options]="slideOpts">
+          <ion-slides [options]="slideOpts">
             <ion-slide *ngFor="let path of photo.filespath">
                   <img src="{{path}}" alt="" />
             </ion-slide>
@@ -13,17 +13,16 @@
           <h1>{{photo.title}}</h1>
           <div class="article-info">
             <time>{{photo.publishedDate | date:'dd/MM/yyyy'}} - {{photo.publishedDate | date:'H:mm'}}</time>
-          </div>
-          <ion-row class="ion-text-right action-buttons">
-            <ion-col class="ion-no-padding">
+            <div>
               <ion-icon name="create-outline" class="icon-action" (click)="openAddPhotoModal(photo)"></ion-icon>
               <ion-icon name="trash-outline" class="icon-action" (click)="deleteGallery(photo.id)"></ion-icon>
-            </ion-col>
-          </ion-row>
+            </div>
+           </div>
         </article>
       </ion-col>
     </ion-row>
   </ion-grid>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openAddPhotoModal()">
       <ion-icon name="add"></ion-icon>
