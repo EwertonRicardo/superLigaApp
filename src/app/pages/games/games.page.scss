@@ -46,3 +46,29 @@
         }
     }
 }
+
+.container-teams{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.container-teams > .team{
+    width: 30%;
+    text-align: center;
+}
+
+.container-teams > .team h4 {
+    font-size: 18px;
+ }
+
+.container-teams > .team > img{
+    width: 70px !important;
+    height: 70px !important;
+}

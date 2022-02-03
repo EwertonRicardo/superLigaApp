@@ -10,6 +10,50 @@
     </ion-segment-button>
   </ion-segment>
 
+  <ion-card class="meeting-card" mode="ios">
+    <ion-card-content class="meeting-card-content">
+      <ion-row>
+        <ion-col>
+          
+         <div class="ion-text-center">
+          <p class="meeting-title">Jogo de ida</p>
+         </div>
+          <div class="container-teams">
+            <div class="team">
+              <img src="https://logodownload.org/wp-content/uploads/2017/02/sport-recife-logo-escudo-1.png">
+              <!-- <h4>Sport</h4> -->
+            </div>
+            <ion-icon name="close-outline" style="font-size: 3rem;"></ion-icon>
+            <div class="team">
+              <img src="https://logodownload.org/wp-content/uploads/2017/02/Santa-Cruz-fc-logo-escudo.png">
+              <!-- <h4>Santa Cruz</h4> -->
+            </div>
+          </div>
+          <div class="ion-text-center">
+            <div class="flex">
+              <!-- <ion-icon name="location-outline"></ion-icon> -->
+              <p class="meeting-hours">
+                Ilha do retirno
+              </p>
+            </div>
+            <div class="flex">
+              <!-- <ion-icon name="time-outline"></ion-icon> -->
+              <p class="meeting-hours">
+                04/03/2022 14:30
+              </p>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-right action-buttons">
+        <ion-col class="ion-no-padding">
+          <ion-icon name="create-outline"></ion-icon>
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
   <div class="container" [ngSwitch]="teamGender">
     <ng-container *ngSwitchCase="'male'">
       <div class="ion-padding">
