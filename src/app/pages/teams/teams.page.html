@@ -1,6 +1,5 @@
 <app-header title="Equipes" [hasNoBorder]="true"></app-header>
 
-
 <ion-content>
   <ion-segment [(ngModel)]="teamGender">
     <ion-segment-button value="male">
@@ -14,14 +13,14 @@
   <div class="container" [ngSwitch]="teamGender">
     <ng-container *ngSwitchCase="'male'">
       <div class="content">
-        <ion-list lines="none" *ngFor="let i of [].constructor(10)">
+        <ion-list lines="none" *ngFor="let team of teamsMale">
           <ion-item>
             <ion-thumbnail slot="start">
-              <img src="../../../assets/imgs/teams/feminine/caruaru-logo.png" />
+              <img [src]="team.imagePath" />
             </ion-thumbnail>
             <ion-label>
-              <h3>Caruaru</h3>
-              <p>Caruaru - Pe</p>
+              <h3>{{ team.name }}</h3>
+              <p>{{ team.state }}</p>
             </ion-label>
           </ion-item>
         </ion-list>
@@ -29,13 +28,25 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'female'">
-
+      <div class="content">
+        <ion-list lines="none" *ngFor="let team of teamsFemale">
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img [src]="team.imagePath" />
+            </ion-thumbnail>
+            <ion-label>
+              <h3>{{ team.name }}</h3>
+              <p>{{ team.state }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
      </ng-container>
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openAddTeamModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
 </ion-content>

@@ -1,6 +1,7 @@
-import { AddTeamComponent } from './components/add-team/add-team.component';
+import { TeamsService } from './../../services/teams/teams.service';
+import { TeamsModel } from './../../models/teams.model';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 @Component({
   selector: 'app-teams',
@@ -10,19 +11,29 @@ import { ModalController } from '@ionic/angular';
 export class TeamsPage implements OnInit {
 
   teamGender = 'male';
-
+  teamsMale: TeamsModel[];
+  teamsFemale: TeamsModel[];
   constructor(
-    private modalCtrl: ModalController
+    private loadingService: LoadingService,
+    private teamsService: TeamsService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.getTeams();
   }
 
-  public async openAddTeamModal(): Promise<void> {
-    const modal = await this.modalCtrl.create({
-      component: AddTeamComponent,
-    });
-    await modal.present();
+  private async getTeams(): Promise<void> {
+    try {
+      await this.loadingService.present();
+      this.teamsService.getTeams().subscribe(teams => {
+        this.teamsFemale = teams.filter(({gender}) => gender === 'female');
+        this.teamsMale = teams.filter(({gender}) => gender === 'male');
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingService.dismiss();
+    }
   }
 
 }

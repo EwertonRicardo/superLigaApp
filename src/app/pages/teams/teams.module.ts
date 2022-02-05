@@ -1,4 +1,3 @@
-import { AddTeamComponent } from './components/add-team/add-team.component';
 import { SharedComponentsModule } from './../../components/shared-components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -20,8 +19,7 @@ import { TeamsPage } from './teams.page';
     SharedComponentsModule
   ],
   declarations: [
-    TeamsPage,
-    AddTeamComponent
+    TeamsPage
   ]
 })
 export class TeamsPageModule {}

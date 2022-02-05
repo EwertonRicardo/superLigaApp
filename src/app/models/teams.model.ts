@@ -1,14 +1,6 @@
 export interface TeamsModel {
-    teamName: string;
+    name: string;
     state: string;
     gender: string;
-    imageId: number;
-}
-
-export interface TeamImage {
-    id: number;
-    name: string;
-    imageUrl: string;
-    isSelected: boolean;
-    isDuplicated?: boolean;
+    imagePath: number;
 }
