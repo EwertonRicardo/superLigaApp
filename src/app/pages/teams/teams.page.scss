@@ -24,6 +24,10 @@ ion-item ion-label p {
     white-space: pre-line;
 }
 
+ion-item ion-label h3 {
+    text-transform: capitalize;
+}
+
 ion-item ion-thumbnail {
     height: 65px;
 }
