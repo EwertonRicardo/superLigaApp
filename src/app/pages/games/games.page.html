@@ -10,7 +10,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  
+
 
   <div class="container" [ngSwitch]="teamGender">
     <ng-container *ngSwitchCase="'male'">
@@ -22,20 +22,18 @@
             <ion-card class="meeting-card" mode="ios" *ngFor="let gameMale of gamesMale">
               <ion-card-content class="meeting-card-content">
                 <ion-row>
-                  <ion-col>
-                    
-                   <div class="ion-text-center">
-                    <p class="meeting-title">{{gameMale.gameNumber}}</p>
-                   </div>
+                  <ion-col class="ion-no-padding">
+
+                    <div class="ion-text-center">
+                      <p class="meeting-title">{{gameMale.gameNumber}}</p>
+                    </div>
                     <div class="container-teams">
                       <div class="team">
                         <img src="{{gameMale.fisrtTeam}}">
-                        <!-- <h4>Sport</h4> -->
                       </div>
-                      <ion-icon name="close-outline" style="font-size: 3rem;"></ion-icon>
+                      <ion-icon name="close-outline" ></ion-icon>
                       <div class="team">
                         <img src="{{gameMale.secondTeam}}">
-                        <!-- <h4>Santa Cruz</h4> -->
                       </div>
                     </div>
                     <div class="ion-text-center">
@@ -62,7 +60,7 @@
                 </ion-row>
               </ion-card-content>
             </ion-card>
-            
+
             <!-- <ion-card class="meeting-card" mode="ios" *ngFor="let gameMale of gamesMale">
               <ion-card-content class="meeting-card-content">
                 <ion-row>
@@ -102,10 +100,10 @@
               <ion-card-content class="meeting-card-content">
                 <ion-row>
                   <ion-col>
-                    
-                   <div class="ion-text-center">
-                    <p class="meeting-title">{{gameFemale.gameNumber}}</p>
-                   </div>
+
+                    <div class="ion-text-center">
+                      <p class="meeting-title">{{gameFemale.gameNumber}}</p>
+                    </div>
                     <div class="container-teams">
                       <div class="team">
                         <img src="{{gameFemale.fisrtTeam}}">
@@ -141,7 +139,7 @@
                 </ion-row>
               </ion-card-content>
             </ion-card>
-            
+
             <!-- <ion-card class="meeting-card" mode="ios" *ngFor="let gameFemale of gamesFemale">
               <ion-card-content class="meeting-card-content">
                 <ion-row>
