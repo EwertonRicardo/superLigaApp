@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GamesService } from './../../../../services/games/games.service';
 import { LoadingService } from './../../../../services/loading/loading.service';
 import { GamesModel } from './../../../../models/games.model';
+import { TeamsModel } from './../../../../models/teams.model';
 import { ToastService } from './../../../../services/toast/toast.service';
 import { MessagesEnum } from 'src/app/enums/messages.enum';
 
@@ -15,6 +16,10 @@ import { MessagesEnum } from 'src/app/enums/messages.enum';
 export class AddGameComponent implements OnInit {
   gameForm: FormGroup;
   game: GamesModel;
+  genderSelecteed;
+  fisrtTeam;
+  secondTeam;
+  teams: TeamsModel[];
   constructor(
     private _formBuilder: FormBuilder,
     private loadingService: LoadingService,
@@ -24,6 +29,12 @@ export class AddGameComponent implements OnInit {
 
   ngOnInit() {
     this._createForm();
+    if(this.game){
+      this.genderSelecteed = this.game.gender;
+      this.getTeams(false);
+      this.fisrtTeam = this.game.fisrtTeam;
+      this.secondTeam = this.game.secondTeam;
+    }
   }
 
   public async addGame(): Promise<void> {
@@ -59,6 +70,26 @@ export class AddGameComponent implements OnInit {
       console.error(error);
     } finally {
       this.loadingService.dismiss();
+    }
+  }
+
+  public async getTeams(reset = true): Promise<void> {
+    try {
+      const genderSelecteed = this.genderSelecteed;
+      console.log(genderSelecteed);
+      if(genderSelecteed){
+        await this.loadingService.present();
+        this.gamesService.getTeams().subscribe(result => {
+          this.teams = result.filter(({gender}) => gender === genderSelecteed);
+        });
+        if(reset){
+          this.fisrtTeam = null;
+          this.secondTeam = null;
+        }
+        this.loadingService.dismiss();
+      }
+    } catch (error) {
+      console.error(error);
     }
   }
 

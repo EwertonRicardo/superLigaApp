@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GamesModel } from './../../models/games.model';
+import { TeamsModel } from './../../models/teams.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -28,6 +29,23 @@ export class GamesService {
           (data) => data.map(d => ({
             id: d.payload.doc.id,
             ...d.payload.doc.data() as GamesModel
+          }))
+        )
+      );
+      return gamesResponse;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  getTeams(): Observable<TeamsModel[]> {
+    try {
+      const gamesResponse = this.ngFirestore.collection('teams').snapshotChanges()
+      .pipe(
+        map(
+          (data) => data.map(d => ({
+            id: d.payload.doc.id,
+            ...d.payload.doc.data() as TeamsModel
           }))
         )
       );
