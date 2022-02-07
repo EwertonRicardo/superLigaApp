@@ -68,6 +68,11 @@ ion-menu.md ion-item ion-icon {
 
 ion-menu.md ion-item ion-label {
   font-weight: 500;
+  white-space: break-spaces;
+}
+
+ion-menu.ios ion-item ion-label {
+  white-space: break-spaces;
 }
 
 ion-menu.ios ion-content {

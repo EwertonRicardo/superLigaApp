@@ -13,7 +13,7 @@ export class AppComponent {
     { title: 'Galeria de fotos', url: '/gallery', icon: 'images' },
     { title: 'Regulamento', url: '/regulations', icon: 'document-text' },
     { title: 'Contato', url: '/contact', icon: 'call' },
-    { title: 'Patrocianadores', url: '/sponsors', icon: 'warning' },
+    { title: 'Patrocianadores e Parceiros', url: '/sponsors', icon: 'warning' },
     { title: 'Sobre a liga', url: '/about', icon: 'information-circle' },
   ];
   constructor() {}
