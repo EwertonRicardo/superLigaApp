@@ -1,86 +1,92 @@
 <app-header [hasMenu]="false" [hasCloseOption]="true"></app-header>
 
 <ion-content>
-  <form [formGroup]="gameForm">
-    <ion-row class="ion-justify-content-center  ">
-        <ion-col size="11">
-            <ion-label>Número do jogo</ion-label>
-            <ion-input type="text" formControlName="gameNumber"></ion-input>
-        </ion-col>
-    </ion-row>
+    <form [formGroup]="gameForm">
+        <ion-row class="ion-justify-content-center  ">
+            <ion-col size="11">
+                <ion-label>Número do jogo</ion-label>
+                <ion-input type="text" formControlName="gameNumber"></ion-input>
+            </ion-col>
+        </ion-row>
 
-    <ion-row class="ion-justify-content-center  ">
-        <ion-col size="11">
-            <ion-label>Local do jogo</ion-label>
-            <ion-input type="text" formControlName="place"></ion-input>
-        </ion-col>
-    </ion-row>
+        <ion-row class="ion-justify-content-center  ">
+            <ion-col size="11">
+                <ion-label>Local do jogo</ion-label>
+                <ion-input type="text" formControlName="place"></ion-input>
+            </ion-col>
+        </ion-row>
 
-    <ion-row class="ion-justify-content-center">
-        <ion-col size="11">
-            <ion-label>Gênero</ion-label>
-            <ion-select formControlName="gender" (ionChange)="getTeams()" [(ngModel)]="genderSelecteed" placeholder="Selecione um" class="select-custom">
-                <ion-select-option value="male">Masculino</ion-select-option>
-                <ion-select-option value="female">Feminino</ion-select-option>
-            </ion-select>
-        </ion-col>
-    </ion-row>
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="11">
+                <ion-label>Gênero</ion-label>
+                <ion-select formControlName="gender" cancelText="Cancelar" interface="action-sheet" (ionChange)="getTeams()"
+                    [(ngModel)]="genderSelecteed" placeholder="Selecione um" class="select-custom">
+                    <ion-select-option value="male">Masculino</ion-select-option>
+                    <ion-select-option value="female">Feminino</ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
 
-    <ion-row class="ion-justify-content-center " *ngIf="teams">
-        <ion-col size="11">
-            <ion-label>Mandante</ion-label>
-            <ion-select formControlName="fisrtTeam" [(ngModel)]="fisrtTeam" placeholder="Selecione um" interface="action-sheet" class="select-custom">
-                <ion-select-option value="{{team.imagePath}}"  *ngFor="let team of teams">{{team.name}}</ion-select-option>
-            </ion-select>
-        </ion-col>
-    </ion-row>
+        <ion-row class="ion-justify-content-center " *ngIf="teams">
+            <ion-col size="11">
+                <ion-label>Mandante</ion-label>
+                <ion-select formControlName="fisrtTeam" cancelText="Cancelar" [(ngModel)]="fisrtTeam" placeholder="Selecione um"
+                    interface="action-sheet" class="select-custom">
+                    <ion-select-option value="{{team.imagePath}}" *ngFor="let team of teams">{{team.name}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
 
-    <ion-row class="ion-justify-content-center" *ngIf="teams">
-        <ion-col size="11">
-            <ion-label>Visitante</ion-label>
-            <ion-select formControlName="secondTeam" [(ngModel)]="secondTeam" placeholder="Selecione um" interface="action-sheet" class="select-custom">
-                <ion-select-option value="{{team.imagePath}}"  *ngFor="let team of teams">{{team.name}}</ion-select-option>
-            </ion-select>
-        </ion-col>
-    </ion-row>
+        <ion-row class="ion-justify-content-center" *ngIf="teams">
+            <ion-col size="11">
+                <ion-label>Visitante</ion-label>
+                <ion-select formControlName="secondTeam" cancelText="Cancelar" [(ngModel)]="secondTeam" placeholder="Selecione um"
+                    interface="action-sheet" class="select-custom">
+                    <ion-select-option value="{{team.imagePath}}" *ngFor="let team of teams">{{team.name}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
 
-    <!-- <ion-row class="ion-justify-content-center">
+        <!-- <ion-row class="ion-justify-content-center">
         <ion-col size="11">
             <ion-label>Primeira equipe</ion-label>
             <ion-input type="text" formControlName="fisrtTeam"></ion-input>
         </ion-col>
     </ion-row> -->
 
-    <!-- <ion-row class="ion-justify-content-center">
+        <!-- <ion-row class="ion-justify-content-center">
         <ion-col size="11">
             <ion-label>Segunda equipe</ion-label>
             <ion-input type="text" formControlName="secondTeam"></ion-input>
         </ion-col>
     </ion-row> -->
 
-    <ion-row class="ion-justify-content-center">
-        <ion-col size="11">
-            <ion-label>Data do jogo</ion-label>
-            <ion-datetime class="select-custom" placeholder="informe a data" displayFormat="MM/DD/YYYY hh:mm" formControlName="gameDate"></ion-datetime>
-        </ion-col>
-    </ion-row>
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="11">
+                <ion-label>Data do jogo</ion-label>
+                <ion-datetime class="select-custom" cancelText="Cancelar" doneText="Ok"  placeholder="informe a data" displayFormat="MM/DD/YYYY hh:mm"
+                    formControlName="gameDate"></ion-datetime>
+            </ion-col>
+        </ion-row>
 
-    <!-- <ion-row class="ion-justify-content-center">
+        <!-- <ion-row class="ion-justify-content-center">
         <ion-col size="11">
             <ion-label>Horário do jogo</ion-label>
             <ion-input type="text" formControlName=""></ion-input>
         </ion-col>
     </ion-row> -->
 
-    <!-- <ion-datetime value="1990-02-19" placeholder="Select Date"></ion-datetime> 
+        <!-- <ion-datetime value="1990-02-19" placeholder="Select Date"></ion-datetime> 
     <ion-datetime display-format="HH:mm" picker-format="HH:mm" value="1990-02-19T07:43Z"></ion-datetime> -->
 
-</form>
+    </form>
 
-<ion-row class="ion-justify-content-center button-margin">
-    <ion-col size="11">
-        <ion-button class="custom-button" (click)="addGame()" *ngIf="!game">Adicionar Jogo</ion-button>
-        <ion-button class="custom-button" (click)="editGame()" *ngIf="game">Editar Jogo</ion-button>
-    </ion-col>
-</ion-row>
+    <ion-row class="ion-justify-content-center button-margin">
+        <ion-col size="11">
+            <ion-button class="custom-button" (click)="addGame()" *ngIf="!game">Adicionar Jogo</ion-button>
+            <ion-button class="custom-button" (click)="editGame()" *ngIf="game">Editar Jogo</ion-button>
+        </ion-col>
+    </ion-row>
 </ion-content>

@@ -112,3 +112,27 @@ ion-spinner {
 .toast-error .button-inner {
     color:  white!important;
 }
+
+// FOR THE ION-SELECT 
+
+ion-select::part(text) {
+    color: var(--ion-color-medium-tint);
+    text-transform: capitalize;
+}
+
+.action-sheet-button-inner.sc-ion-action-sheet-md, 
+.action-sheet-button-inner.sc-ion-action-sheet-ios {
+    color: var(--ion-color-medium-tint);
+    text-transform: capitalize;
+}
+
+//FOR THE ION-DATETIME
+
+ion-datetime {
+    color: var(--ion-color-medium-tint);
+}
+
+.sc-ion-picker-md-h,
+.sc-ion-picker-io-h {
+    color: var(--ion-color-medium-tint);
+}
