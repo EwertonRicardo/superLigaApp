@@ -4,25 +4,26 @@
 
   <div class="container">
       <ion-item lines="none" *ngFor="let regulation of regulations">
-        <ion-grid class="ion-no-padding">
+        <!-- <ion-grid class="ion-no-padding">
           <ion-row class="ion-align-items-center">
-            <ion-col>
+            <ion-col> -->
               <ion-label>
                 <h4>{{regulation.title}}</h4>
               </ion-label>
-            </ion-col>
-          </ion-row>
-          <ion-row class="ion-text-right action-buttons">
-            <ion-col class="ion-no-padding">
+            <!-- </ion-col>
+          </ion-row> -->
+          <!-- <ion-row class="ion-text-right action-buttons">
+            <ion-col class="ion-no-padding"> -->
               
-              <a [href]="regulation.filepath" rel="nofollow" target="_blank">
+              <!-- <a [href]="regulation.filepath" rel="nofollow" target="_blank">
                 <ion-icon name="download-outline"></ion-icon>
-              </a>
-              <ion-icon name="create-outline" (click)="openAddDetailModal(regulation)"></ion-icon>
-              <ion-icon name="trash-outline" (click)="delete(regulation.id)"></ion-icon>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+              </a> -->
+              <!-- <ion-icon name="create-outline" (click)="openAddDetailModal(regulation)"></ion-icon>
+              <ion-icon name="trash-outline" (click)="delete(regulation.id)"></ion-icon> -->
+            <!-- </ion-col>
+          </ion-row> -->
+        <!-- </ion-grid> -->
+          <ion-icon slot="end" name="download-outline"></ion-icon>
       </ion-item>
   </div>
 
