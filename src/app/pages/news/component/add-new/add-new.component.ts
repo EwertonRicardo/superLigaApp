@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewsService } from './../../../../services/news/news.service';
 import { MessagesEnum } from 'src/app/enums/messages.enum';
+import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 
 @Component({
   selector: 'app-add-new',
@@ -21,8 +22,9 @@ export class AddNewComponent implements OnInit {
     private newsService: NewsService,
     private _formBuilder: FormBuilder,
     private loadingService: LoadingService,
-    private toastService: ToastService
-  ) { }
+    private toastService: ToastService,
+    private fileChooser: Chooser,
+    ) { }
 
   ngOnInit() {
     this._createForm();
@@ -60,6 +62,19 @@ export class AddNewComponent implements OnInit {
       this.loadingService.dismiss();
     }
   }
+
+  public async getFile(): Promise<void> {
+   try {
+     await this.loadingService.present();
+     const file = await this.fileChooser.getFile();
+     console.log(file);
+   } catch (error) {
+     this.toastService.showToast(error);
+   } finally {
+    this.loadingService.dismiss();
+   }
+  }
+
   private _createForm(): void {
 
     if (this.news) {

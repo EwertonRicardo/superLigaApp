@@ -2,7 +2,17 @@
 
 <ion-content>
     <form [formGroup]="newForm">
-        <ion-row class="ion-justify-content-center  ">
+
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="11">
+                <article>
+                    <img
+                        src="https://redesoberano.com.br/wp-content/uploads/2021/06/As-praias-mais-proximas-do-Centro-de-Porto-Seguro.jpg">
+                </article>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
             <ion-col size="11">
                 <ion-label>Título</ion-label>
                 <ion-input type="text" formControlName="title"></ion-input>
@@ -19,7 +29,10 @@
 
     <ion-row class="ion-justify-content-center button-margin">
         <ion-col size="11">
-            <ion-button class="custom-button" (click)="addNote()" *ngIf="!news">Adicionar</ion-button>
+            <ion-button mode="md" fill="clear" class="clear-button" (click)="getFile()" *ngIf="!news">
+                <ion-icon name="images"></ion-icon>
+            </ion-button>
+            <ion-button mode="md" class="custom-button" (click)="addNote()" *ngIf="!news">Adicionar</ion-button>
             <ion-button class="custom-button" (click)="editNew()" *ngIf="news">Editar</ion-button>
         </ion-col>
     </ion-row>
