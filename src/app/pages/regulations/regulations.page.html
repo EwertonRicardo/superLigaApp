@@ -1,4 +1,4 @@
-<app-header title="Regulamento"></app-header>
+<app-header title="Documentos"></app-header>
 
 <ion-content>
 
@@ -23,7 +23,7 @@
             <!-- </ion-col>
           </ion-row> -->
         <!-- </ion-grid> -->
-          <ion-icon slot="end" name="download-outline"></ion-icon>
+          <ion-icon slot="end" name="download-outline" (click)="downloadFile(regulation.filepath)"></ion-icon>
       </ion-item>
   </div>
 

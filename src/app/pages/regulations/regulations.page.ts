@@ -1,3 +1,4 @@
+import { FileManagerService } from './../../services/file-manager/file-manager.service';
 import { LoadingService } from './../../services/loading/loading.service';
 import { RegulationsModel } from './../../models/regulations.model';
 import { AddRegulationComponent } from './components/add-regulation/add-regulation.component';
@@ -18,8 +19,9 @@ export class RegulationsPage implements OnInit {
     private regulationsService: RegulationsService,
     private modalCtrl: ModalController,
     private toastService: ToastService,
-    private loadingService: LoadingService
-  ) { }
+    private loadingService: LoadingService,
+    private fileManager: FileManagerService
+    ) { }
 
   async ngOnInit() {
     await this.get();
@@ -39,6 +41,17 @@ export class RegulationsPage implements OnInit {
 
       await this.regulationsService.delete(regulationId);
       await this.toastService.showToast(MessagesEnum.regulationDeleted, 'toast-success');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingService.dismiss();
+    }
+  }
+
+  public async downloadFile(url: string): Promise<void> {
+    try {
+      await this.loadingService.present();
+      await this.fileManager.downloadFile(url);
     } catch (error) {
       console.error(error);
     } finally {

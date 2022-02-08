@@ -22,6 +22,6 @@ import { RegulationsPage } from './regulations.page';
   declarations: [
     RegulationsPage,
     AddRegulationComponent
-  ]
+  ],
 })
 export class RegulationsPageModule {}

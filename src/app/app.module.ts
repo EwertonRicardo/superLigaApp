@@ -16,6 +16,10 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 // Environment
 import { environment } from '../environments/environment';
 
+import { HttpClientModule } from '@angular/common/http';
+import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
+import { FileOpener } from '@awesome-cordova-plugins/file-opener/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -26,9 +30,14 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Chooser,
+    FileOpener
+  ],
   bootstrap: [AppComponent],
 })
 

@@ -1,4 +1,3 @@
-import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 import { AddNewComponent } from './component/add-new/add-new.component';
 import { NewDetailComponent } from './component/new-detail/new-detail.component';
 import { NgModule } from '@angular/core';
@@ -25,6 +24,5 @@ import { SharedComponentsModule } from './../../components/shared-components.mod
     NewDetailComponent,
     AddNewComponent
   ],
-  providers: [Chooser]
 })
 export class NewsPageModule {}

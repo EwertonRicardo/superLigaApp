@@ -11,7 +11,7 @@ export class AppComponent {
     { title: 'Jogos', url: '/games', icon: 'game-controller' },
     { title: 'Ranking', url: '/folder/Archived', icon: 'star' },
     { title: 'Galeria de fotos', url: '/gallery', icon: 'images' },
-    { title: 'Regulamento', url: '/regulations', icon: 'document-text' },
+    { title: 'Documentos', url: '/regulations', icon: 'document-text' },
     { title: 'Contato', url: '/contact', icon: 'call' },
     { title: 'Patrocianadores e Parceiros', url: '/sponsors', icon: 'warning' },
     { title: 'Sobre a liga', url: '/about', icon: 'information-circle' },
