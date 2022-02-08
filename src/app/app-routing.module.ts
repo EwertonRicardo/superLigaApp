@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'regulations',
     loadChildren: () => import('./pages/regulations/regulations.module').then( m => m.RegulationsPageModule)
+  },  {
+    path: 'ranking',
+    loadChildren: () => import('./pages/ranking/ranking.module').then( m => m.RankingPageModule)
   }
+
 
 ];
 
