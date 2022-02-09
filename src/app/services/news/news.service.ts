@@ -43,7 +43,11 @@ export class NewsService {
   // }
   async updateNew(newDetail: NewsModel, newsId: string): Promise<void> {
    try {
-    await this.ngFirestore.collection('news').doc(newsId).update({title: newDetail.title, description: newDetail.description});
+    await this.ngFirestore.collection('news').doc(newsId).update({
+      title: newDetail.title,
+      description: newDetail.description,
+      filespath: newDetail.filespath
+    });
    } catch (error) {
      throw error;
    }
