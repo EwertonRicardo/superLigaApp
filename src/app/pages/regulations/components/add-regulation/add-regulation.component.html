@@ -1,33 +1,35 @@
 <app-header [hasMenu]="false" [hasCloseOption]="true"></app-header>
 
 <ion-content>
-    <form [formGroup]="regulationForm">
-        <ion-row class="ion-justify-content-center  ">
-            <ion-col size="11">
-                <ion-label>Título</ion-label>
-                <ion-input type="text" formControlName="title"></ion-input>
-            </ion-col>
-        </ion-row>
-
-        <ion-row class="ion-justify-content-center">
-            <ion-col size="11">
-              <ion-card>
-                <ion-card-header>
-                  <ion-card-title>Selecione o arquivo</ion-card-title>
-                </ion-card-header>
-            
-                <ion-button class="upload">
-                  <input type="file" (change)="fileUpload($event)"/>
-                </ion-button>
-              </ion-card>
-            </ion-col>
-        </ion-row>
-    </form>
-
-    <ion-row class="ion-justify-content-center button-margin">
-        <ion-col size="11">
-            <ion-button class="custom-button" (click)="add()" *ngIf="!regulation">Adicionar</ion-button>
-            <ion-button class="custom-button" (click)="update()" *ngIf="regulation">Editar</ion-button>
-        </ion-col>
+  <form [formGroup]="regulationForm">
+    <ion-row class="ion-justify-content-center  ">
+      <ion-col size="11">
+        <ion-label>Título</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-col>
     </ion-row>
+
+    <!-- <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Selecione o arquivo</ion-card-title>
+          </ion-card-header>
+
+          <ion-button class="upload">
+            <input type="file" (change)="fileUpload($event)" />
+          </ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row> -->
+  </form>
+
+  <ion-row class="ion-justify-content-center button-margin">
+    <ion-col size="11">
+      <ion-button mode="md" fill="clear" class="clear-button" (click)="getFile()">
+        <ion-icon name="images"></ion-icon>
+      </ion-button>
+      <ion-button class="custom-button" (click)="add()" *ngIf="!regulation">Adicionar</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

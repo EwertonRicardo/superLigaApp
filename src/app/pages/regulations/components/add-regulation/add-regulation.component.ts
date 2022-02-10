@@ -10,6 +10,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { MessagesEnum } from 'src/app/enums/messages.enum';
+import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 
 @Component({
   selector: 'app-add-regulation',
@@ -44,6 +45,7 @@ export class AddRegulationComponent implements OnInit {
     private toastService: ToastService,
     private angularFirestore: AngularFirestore,
     private angularFireStorage: AngularFireStorage,
+    private fileChooser: Chooser,
   ) {
     this.isImgUploading = false;
     this.isImgUploaded = false;
@@ -64,18 +66,18 @@ export class AddRegulationComponent implements OnInit {
     const promises: AngularFireUploadTask[] = [];
     let counter = 0;
     return new Promise(resolve => {
-      for (const file of this.files) {
+      // for (const file of this.files) {
         // if (file.type.split('/')[0] !== 'application') {
         //   console.log('File type is not supported!');
         //   return;
         // }
         this.isImgUploading = true;
         this.isImgUploaded = false;
-        this.fileName = file.name;
-        const fileStoragePath = `regulations/${new Date().getTime()}_${file.name}`;
+        this.fileName = this.files.name;
+        const fileStoragePath = `regulations/${new Date().getTime()}_${this.files.name}`;
         const imageRef = this.angularFireStorage.ref(fileStoragePath);
 
-        this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, file);
+        this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, this.files);
         this.progressNum = this.ngFireUploadTask.percentageChanges();
         this.ngFireUploadTask.snapshotChanges().pipe(
           finalize(() => {
@@ -91,7 +93,7 @@ export class AddRegulationComponent implements OnInit {
               this.fileSize = snap.totalBytes;
           })
         ).subscribe();
-      }
+      // }
     });
   }
 
@@ -117,28 +119,17 @@ export class AddRegulationComponent implements OnInit {
     }
   }
 
-  public async update(): Promise<void> {
+  public async getFile(): Promise<void> {
     try {
       await this.loadingService.present();
-      let file = this.regulation.filepath;
-      if(this.files){
-         file = await this.sendFiles();
-      }
-      console.log(file);
-      const request: RegulationsModel = {
-        title:  this.regulationForm.get('title').value,
-        filepath:  file,
-        publishedDate:  new Date().getTime()
-      };
-
-      await this.regulationsService.update(request,this.regulation.id);
-      await this.toastService.showToast(MessagesEnum.regulationUpdated, 'toast-success');
+      this.files = await this.fileChooser.getFile();
+      console.log(this.files);
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(error);
     } finally {
-      this.loadingService.dismiss();
+     this.loadingService.dismiss();
     }
-  }
+   }
 
   private _createForm(): void {
 

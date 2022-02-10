@@ -38,18 +38,6 @@ export class RegulationsService {
     }
   }
 
-  async update(regulation: RegulationsModel, regulationId: string): Promise<void> {
-    try {
-     await this.ngFirestore.collection('regulations').doc(regulationId).update({
-        title: regulation.title,
-        filepath: regulation.filepath,
-        publishedDate: regulation.publishedDate
-      });
-    } catch (error) {
-      throw error;
-    }
-   }
-
    async delete(id: string): Promise<void> {
      try {
        await this.ngFirestore.doc('regulations/' + id).delete();

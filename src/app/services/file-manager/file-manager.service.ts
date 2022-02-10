@@ -21,11 +21,13 @@ export class FileManagerService {
 
       const fileResponse = await this.http.get(fileUrl, { responseType: 'blob' }).toPromise();
 
-      const fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
+      const removeFileNamePath = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
+      const fileName = removeFileNamePath?.substring(0, removeFileNamePath.indexOf('?'));
       const base64 = await this.convertBlobToBase64(fileResponse) as string;
+      console.log(fileName);
 
       const foo = await Filesystem.writeFile({
-        path: 'application.pdf',
+        path: fileName,
         data: base64,
         directory: Directory.Documents,
       });
@@ -57,5 +59,13 @@ export class FileManagerService {
     if (name.indexOf('png') >= 0) {
       return 'image/png';
     }
-  }
+
+    if (name.indexOf('jpeg') >= 0) {
+      return 'image/jpeg';
+    }
+
+    if (name.indexOf('jpeg') >= 0 || name.indexOf('jpg') >= 0) {
+      return 'image/jpeg';
+    }
+  };
 }

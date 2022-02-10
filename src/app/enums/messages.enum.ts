@@ -9,5 +9,5 @@ export enum MessagesEnum {
     galleryDeleted = 'Galeria deletada com sucesso!',
     regulationAdded = 'Regulamento criado com sucesso!',
     regulationUpdated = 'Regulamento editado com sucesso!',
-    regulationDeleted = 'Regulamento deletedo com sucesso!',
+    regulationDeleted = 'Regulamento deletado com sucesso!',
 }
