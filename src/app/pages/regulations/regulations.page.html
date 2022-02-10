@@ -8,7 +8,7 @@
         <h4>{{regulation.title}}</h4>
       </ion-label>
       <ion-icon slot="end" name="download-outline" (click)="downloadFile(regulation.filepath)"></ion-icon>
-      <ion-icon slot="end" name="trash-outline" (click)="deleteRegulation(regulation.id)"></ion-icon>
+      <ion-icon name="trash-outline" (click)="delete(regulation)"></ion-icon>
     </ion-item>
   </div>
 

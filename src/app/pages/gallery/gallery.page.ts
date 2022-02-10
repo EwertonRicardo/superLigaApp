@@ -6,6 +6,7 @@ import { ToastService } from './../../services/toast/toast.service';
 import { MessagesEnum } from 'src/app/enums/messages.enum';
 import { PhotosModel } from './../../models/photos.model';
 import { ModalController } from '@ionic/angular';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-gallery',
@@ -25,7 +26,8 @@ export class GalleryPage implements OnInit {
     private galleryService: GalleryService,
     private loadingService: LoadingService,
     private toastService: ToastService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private angularFireStorage: AngularFireStorage,
   ) {}
 
   async ngOnInit() {
@@ -40,11 +42,16 @@ export class GalleryPage implements OnInit {
     await modal.present();
   }
 
-  public async deleteGallery(gallery: string): Promise<void> {
+  public async deleteGallery(gallery: PhotosModel): Promise<void> {
     try {
       await this.loadingService.present();
 
-      await this.galleryService.delete(gallery);
+      const files = gallery.filespath;
+      for (const file of files){
+        this.angularFireStorage.storage.refFromURL(file).delete();
+      }
+
+      await this.galleryService.delete(gallery.id);
       await this.toastService.showToast(MessagesEnum.galleryDeleted, 'toast-success');
     } catch (error) {
       console.error(error);
@@ -59,9 +66,7 @@ export class GalleryPage implements OnInit {
 
       this.galleryService.getPhotos().subscribe(result => {
         this.photos = result;
-        console.log(this.photos)
       });
-      
     } catch (error) {
       console.error(error);
     } finally {

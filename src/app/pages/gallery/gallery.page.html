@@ -16,7 +16,7 @@
             <time>{{photo.publishedDate | date:'dd/MM/yyyy'}} - {{photo.publishedDate | date:'H:mm'}}</time>
             <div>
               <ion-icon name="create-outline" class="icon-action" (click)="openAddPhotoModal(photo)"></ion-icon>
-              <ion-icon name="trash-outline" class="icon-action" (click)="deleteGallery(photo.id)"></ion-icon>
+              <ion-icon name="trash-outline" class="icon-action" (click)="deleteGallery(photo)"></ion-icon>
             </div>
            </div>
         </article>
