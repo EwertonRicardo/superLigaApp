@@ -81,6 +81,20 @@ ion-button.custom-button {
     text-transform: capitalize;
 }
 
+.clear-button {
+    --border-radius: 10px;
+    --border-width: 1px;
+    --border-style: solid;
+    --border-color: linear-gradient(80deg, rgba(45, 112, 229, 1) 35%, rgba(14, 59, 140, 1) 100%) !important;
+    height: 50px;
+    width: 100%;
+}
+
+.clear-button ion-icon {
+    color: var(--ion-color-medium-shade);
+    font-size: 25px;
+}
+
 .button-margin {
     margin-top: 32px;
 }

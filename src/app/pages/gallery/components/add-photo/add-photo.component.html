@@ -9,16 +9,6 @@
       </ion-col>
     </ion-row>
 
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Selecione o arquivo</ion-card-title>
-      </ion-card-header>
-
-      <ion-button class="upload">
-        <input type="file" (change)="fileUpload($event)" multiple />
-      </ion-button>
-    </ion-card>
-
     <ion-list *ngFor="let path of filesList; let i = index" mode="md">
       <ion-item lines="full">
         <ion-thumbnail slot="start">
@@ -33,6 +23,12 @@
   </form>
   <ion-row class="ion-justify-content-center button-margin">
     <ion-col size="11">
+      <ion-button mode="md"  fill="clear" class="clear-button">
+        <label for="file-upload" class="custom-file-upload">
+          <ion-icon name="images"></ion-icon>
+        </label>
+        <input type="file" id="file-upload" (change)="fileUpload($event)" multiple />
+      </ion-button>
       <ion-button class="custom-button" (click)="addPhoto()" *ngIf="!photo">Adicionar Galeria</ion-button>
       <ion-button class="custom-button" (click)="updateGallery()" *ngIf="photo">Editar Galeria</ion-button>
     </ion-col>
