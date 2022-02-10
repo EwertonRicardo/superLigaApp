@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { FileOpener } from '@awesome-cordova-plugins/file-opener/ngx';
-import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 
 
 @Injectable({
@@ -25,9 +25,9 @@ export class FileManagerService {
       const base64 = await this.convertBlobToBase64(fileResponse) as string;
 
       const foo = await Filesystem.writeFile({
-        path: fileName,
+        path: 'application.pdf',
         data: base64,
-        directory: Directory.Documents
+        directory: Directory.Documents,
       });
 
       const mimeType = this.getMimeType(fileName);

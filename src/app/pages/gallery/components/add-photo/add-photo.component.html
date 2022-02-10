@@ -1,40 +1,40 @@
 <app-header [hasMenu]="false" [hasCloseOption]="true"></app-header>
 
 <ion-content>
-    <form [formGroup]="photoForm">
-      <ion-row class="ion-justify-content-center  ">
-          <ion-col size="11">
-              <ion-label>Título</ion-label>
-              <ion-input type="text" formControlName="title"></ion-input>
-          </ion-col>
-      </ion-row>
-      
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Selecione o arquivo</ion-card-title>
-        </ion-card-header>
-    
-        <ion-button class="upload">
-          <input type="file" (change)="fileUpload($event)" multiple/>
-        </ion-button>
-      </ion-card>
-
-      <div *ngFor="let path of filesList; index as i">
-            <div class="container">
-              <img src="{{path}}" alt="" />
-              <ion-row class="ion-text-right action-buttons">
-                <ion-col class="ion-no-padding">
-                  <ion-icon name="trash-outline" class="icon-action" (click)="removeImageList(i)"></ion-icon>
-                </ion-col>
-              </ion-row>
-            </div>
-      </div>
-  
-    </form>
-    <ion-row class="ion-justify-content-center button-margin">
+  <form [formGroup]="photoForm">
+    <ion-row class="ion-justify-content-center  ">
       <ion-col size="11">
-          <ion-button class="custom-button" (click)="addPhoto()" *ngIf="!photo">Adicionar Galeria</ion-button>
-          <ion-button class="custom-button" (click)="updateGallery()"  *ngIf="photo">Editar Galeria</ion-button>
+        <ion-label>Título</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
       </ion-col>
     </ion-row>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Selecione o arquivo</ion-card-title>
+      </ion-card-header>
+
+      <ion-button class="upload">
+        <input type="file" (change)="fileUpload($event)" multiple />
+      </ion-button>
+    </ion-card>
+
+    <ion-list *ngFor="let path of filesList; let i = index" mode="md">
+      <ion-item lines="full">
+        <ion-thumbnail slot="start">
+          <img [src]="path" />
+        </ion-thumbnail>
+        <ion-buttons slot="end">
+          <ion-icon name="trash-outline" class="icon-action" (click)="removeImageList(i)"></ion-icon>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+
+  </form>
+  <ion-row class="ion-justify-content-center button-margin">
+    <ion-col size="11">
+      <ion-button class="custom-button" (click)="addPhoto()" *ngIf="!photo">Adicionar Galeria</ion-button>
+      <ion-button class="custom-button" (click)="updateGallery()" *ngIf="photo">Editar Galeria</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>
