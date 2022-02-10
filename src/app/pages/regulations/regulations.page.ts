@@ -7,6 +7,7 @@ import { ToastService } from './../../services/toast/toast.service';
 import { MessagesEnum } from 'src/app/enums/messages.enum';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-regulations',
@@ -20,7 +21,8 @@ export class RegulationsPage implements OnInit {
     private modalCtrl: ModalController,
     private toastService: ToastService,
     private loadingService: LoadingService,
-    private fileManager: FileManagerService
+    private fileManager: FileManagerService,
+    private angularFireStorage: AngularFireStorage,
     ) { }
 
   async ngOnInit() {
@@ -35,11 +37,15 @@ export class RegulationsPage implements OnInit {
     await modal.present();
   }
 
-  public async delete(regulationId: string): Promise<void> {
+  public async delete(regulation: RegulationsModel): Promise<void> {
     try {
       await this.loadingService.present();
 
-      await this.regulationsService.delete(regulationId);
+      if(regulation.filepath){
+        this.angularFireStorage.storage.refFromURL(regulation.filepath).delete();
+      }
+
+      await this.regulationsService.delete(regulation.id);
       await this.toastService.showToast(MessagesEnum.regulationDeleted, 'toast-success');
     } catch (error) {
       console.error(error);
