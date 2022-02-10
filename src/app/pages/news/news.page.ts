@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { NewsService } from './../../services/news/news.service';
 import { NewsModel } from './../../models/news.model';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-news',
@@ -16,7 +17,8 @@ export class NewsPage implements OnInit {
   constructor(
     private newsService: NewsService,
     private modalCtrl: ModalController,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private angularFireStorage: AngularFireStorage,
   ) { }
 
   async ngOnInit() {
@@ -41,11 +43,15 @@ export class NewsPage implements OnInit {
     await modal.present();
   }
 
-  public async deleteNew(newID: string): Promise<void> {
+  public async deleteNew(newObject: NewsModel): Promise<void> {
     try {
       await this.loadingService.present();
 
-      await this.newsService.delete(newID);
+      if(newObject.filespath){
+        this.angularFireStorage.storage.refFromURL(newObject.filespath).delete();
+      }
+
+      await this.newsService.delete(newObject.id);
     } catch (error) {
       console.error(error);
     } finally {
