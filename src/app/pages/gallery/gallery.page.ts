@@ -17,7 +17,6 @@ export class GalleryPage implements OnInit {
     initialSlide: 0,
     speed: 400,
     loop: true,
-    autoplay: true,
     centeredSlides: true,
     spaceBetween: 30
   };

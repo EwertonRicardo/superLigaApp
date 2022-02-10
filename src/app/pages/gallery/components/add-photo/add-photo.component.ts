@@ -33,9 +33,6 @@ export class AddPhotoComponent implements OnInit {
   fileName: string;
   fileSize: number;
 
-  isImgUploading: boolean;
-  isImgUploaded: boolean;
-
   private ngFirestoreCollection: AngularFirestoreCollection<PhotosModel>;
   constructor(
     private _formBuilder: FormBuilder,
@@ -45,8 +42,7 @@ export class AddPhotoComponent implements OnInit {
     private toastService: ToastService,
     private loadingService: LoadingService,
   ) {
-    this.isImgUploading = false;
-    this.isImgUploaded = false;
+
     this.ngFirestoreCollection = angularFirestore.collection<PhotosModel>('gallery');
    }
 
@@ -68,8 +64,6 @@ export class AddPhotoComponent implements OnInit {
           console.log('File type is not supported!');
           return;
         }
-        this.isImgUploading = true;
-        this.isImgUploaded = false;
         this.fileName = file.name;
         const fileStoragePath = `filesStorage/${new Date().getTime()}_${file.name}`;
         const imageRef = this.angularFireStorage.ref(fileStoragePath);
@@ -106,13 +100,14 @@ export class AddPhotoComponent implements OnInit {
 
       const request: PhotosModel = {
         title:  this.photoForm.get('title').value,
+        description: this.photoForm.get('description').value,
         filespath:  files,
         publishedDate:  new Date().getTime()
       };
 
       await this.galleryService.create(request);
       this.photoForm.reset();
-      await this.toastService.showToast(MessagesEnum.gamesAdded, 'toast-success');
+      await this.toastService.showToast(MessagesEnum.gallerySuccess, 'toast-success');
     } catch (error) {
       console.error(error);
     } finally {
@@ -124,10 +119,13 @@ export class AddPhotoComponent implements OnInit {
     try {
       await this.loadingService.present();
 
-      await this.sendFiles();
+      if(this.files){
+        await this.sendFiles();
+      }
 
       const request: PhotosModel = {
         title:  this.photoForm.get('title').value,
+        description: this.photoForm.get('description').value,
         filespath:  this.filesList,
         publishedDate:  new Date().getTime()
       };
@@ -140,7 +138,7 @@ export class AddPhotoComponent implements OnInit {
     }
   }
 
-  public removeImageList(index: string) {
+  public removeImageList(index: number) {
     this.filesList.splice(index,1);
   }
 
@@ -148,11 +146,13 @@ export class AddPhotoComponent implements OnInit {
     if (this.photo) {
       this.photoForm = this._formBuilder.group({
         title: [this.photo.title, Validators.required],
+        description: [this.photo.description, Validators.required]
       });
       this.filesList = this.photo.filespath;
     } else {
       this.photoForm = this._formBuilder.group({
         title: ['', Validators.required],
+        description: ['', Validators.required]
       });
     }
   }

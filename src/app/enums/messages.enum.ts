@@ -5,6 +5,7 @@ export enum MessagesEnum {
     gamesDeletedSuccess = 'Jogo deletado com sucesso!',
     gameUpdated = 'Jogo editado com sucesso!',
     galleryUpdated = 'Galeria editada com sucesso!',
+    gallerySuccess = 'Item adicionado a galeria!',
     galleryDeleted = 'Galeria deletada com sucesso!',
     regulationAdded = 'Regulamento criado com sucesso!',
     regulationUpdated = 'Regulamento editado com sucesso!',

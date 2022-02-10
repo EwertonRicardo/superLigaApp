@@ -3,4 +3,5 @@ export interface PhotosModel {
     title: string;
     filespath: any;
     publishedDate: number;
+    description: string;
 }

@@ -21,6 +21,11 @@ ion-col{
     border-bottom: 1px solid rgb(128,128,128, 0.3);
 }
 
+.description {
+    text-align: justify;
+    color: var(--ion-color-medium-tint);
+    font-size: 14px;
+}
 .article-info{
     display: flex;
     align-items: center;

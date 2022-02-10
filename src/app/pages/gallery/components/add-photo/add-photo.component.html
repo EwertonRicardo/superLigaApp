@@ -9,7 +9,14 @@
       </ion-col>
     </ion-row>
 
-    <ion-list *ngFor="let path of filesList; let i = index" mode="md">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-label>Descrição</ion-label>
+        <ion-textarea rows="10" formControlName="description"></ion-textarea>
+      </ion-col>
+    </ion-row>
+
+    <ion-list  mode="md" *ngFor="let path of filesList; let i = index">
       <ion-item lines="full">
         <ion-thumbnail slot="start">
           <img [src]="path" />
@@ -23,7 +30,7 @@
   </form>
   <ion-row class="ion-justify-content-center button-margin">
     <ion-col size="11">
-      <ion-button mode="md"  fill="clear" class="clear-button">
+      <ion-button mode="md" fill="clear" class="clear-button">
         <label for="file-upload" class="custom-file-upload">
           <ion-icon name="images"></ion-icon>
         </label>

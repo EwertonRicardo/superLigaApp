@@ -43,7 +43,9 @@ export class GalleryService {
       await this.ngFirestore.collection('gallery').doc(galleryId).update(
         {
           title: gallery.title,
-          filespath: gallery.filespath, publishedDate: gallery.publishedDate
+          description: gallery.description,
+          filespath: gallery.filespath,
+          publishedDate: gallery.publishedDate
         }
       );
     } catch (error) {
