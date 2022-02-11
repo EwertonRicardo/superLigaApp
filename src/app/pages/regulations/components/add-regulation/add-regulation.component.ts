@@ -88,6 +88,10 @@ export class AddRegulationComponent implements OnInit {
     }
   }
 
+  public removeImage(): void {
+    this.files = null;
+  }
+
   private async sendFiles(): Promise<string> {
     return new Promise(resolve => {
       this.isImgUploading = true;

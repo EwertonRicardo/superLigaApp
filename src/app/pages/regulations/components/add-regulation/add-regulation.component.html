@@ -9,6 +9,15 @@
       </ion-col>
     </ion-row>
   </form>
+  
+  <ion-item lines="full" *ngIf="files">
+    <ion-label class="image-name">
+      {{ files.name }}
+    </ion-label>
+    <ion-buttons slot="end">
+      <ion-icon name="trash-outline" class="icon-action" (click)="removeImage()"></ion-icon>
+    </ion-buttons>
+  </ion-item>
 
   <ion-row class="ion-justify-content-center button-margin">
     <ion-col size="11">
