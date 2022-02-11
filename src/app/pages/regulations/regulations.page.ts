@@ -37,7 +37,7 @@ export class RegulationsPage implements OnInit {
     await modal.present();
   }
 
-  public async delete(regulation: RegulationsModel): Promise<void> {
+  public async deleteRegulation(regulation: RegulationsModel): Promise<void> {
     try {
       await this.loadingService.present();
 

@@ -56,57 +56,15 @@ export class AddRegulationComponent implements OnInit {
     this._createForm();
   }
 
-  async fileUpload(event) {
-    this.files =  event.target.files;
-    console.log(this.files);
-  }
-
-  sendFiles() {
-    const filesPath = [];
-    const promises: AngularFireUploadTask[] = [];
-    let counter = 0;
-    return new Promise(resolve => {
-      // for (const file of this.files) {
-        // if (file.type.split('/')[0] !== 'application') {
-        //   console.log('File type is not supported!');
-        //   return;
-        // }
-        this.isImgUploading = true;
-        this.isImgUploaded = false;
-        this.fileName = this.files.name;
-        const fileStoragePath = `regulations/${new Date().getTime()}_${this.files.name}`;
-        const imageRef = this.angularFireStorage.ref(fileStoragePath);
-
-        this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, this.files);
-        this.progressNum = this.ngFireUploadTask.percentageChanges();
-        this.ngFireUploadTask.snapshotChanges().pipe(
-          finalize(() => {
-            imageRef.getDownloadURL().subscribe((url) => {
-              // filesPath.push(url);
-              counter++;
-              if(counter === this.files.length){
-                  resolve(url);
-              }
-            });
-          }),
-          tap(snap => {
-              this.fileSize = snap.totalBytes;
-          })
-        ).subscribe();
-      // }
-    });
-  }
-
   public async add(): Promise<void> {
     try {
       await this.loadingService.present();
 
       const file = await this.sendFiles();
-      console.log(file);
       const request: RegulationsModel = {
-        title:  this.regulationForm.get('title').value,
-        filepath:  file,
-        publishedDate:  new Date().getTime()
+        title: this.regulationForm.get('title').value,
+        filepath: file,
+        publishedDate: new Date().getTime()
       };
 
       await this.regulationsService.create(request);
@@ -123,21 +81,44 @@ export class AddRegulationComponent implements OnInit {
     try {
       await this.loadingService.present();
       this.files = await this.fileChooser.getFile();
-      console.log(this.files);
     } catch (error) {
       this.toastService.showToast(error);
     } finally {
-     this.loadingService.dismiss();
+      this.loadingService.dismiss();
     }
-   }
+  }
+
+  private async sendFiles(): Promise<string> {
+    return new Promise(resolve => {
+      this.isImgUploading = true;
+      this.isImgUploaded = false;
+      this.fileName = this.files.name;
+      const fileStoragePath = `regulations/${new Date().getTime()}_${this.files.name}`;
+      const imageRef = this.angularFireStorage.ref(fileStoragePath);
+
+      this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, this.files.data);
+      this.progressNum = this.ngFireUploadTask.percentageChanges();
+      this.ngFireUploadTask.snapshotChanges().pipe(
+        finalize(() => {
+          imageRef.getDownloadURL().subscribe((url) => {
+            resolve(url);
+
+          });
+        }),
+        tap(snap => {
+          this.fileSize = snap.totalBytes;
+        })
+      ).subscribe();
+    });
+  }
 
   private _createForm(): void {
 
-    if(this.regulation){
+    if (this.regulation) {
       this.regulationForm = this._formBuilder.group({
         title: [this.regulation.title, Validators.required],
       });
-    }else{
+    } else {
       this.regulationForm = this._formBuilder.group({
         title: ['', Validators.required],
       });
