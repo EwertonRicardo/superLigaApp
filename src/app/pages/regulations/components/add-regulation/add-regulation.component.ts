@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { MessagesEnum } from 'src/app/enums/messages.enum';
 import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 
@@ -23,18 +23,7 @@ export class AddRegulationComponent implements OnInit {
   files;
 
   ngFireUploadTask: AngularFireUploadTask;
-
-  progressNum: Observable<number>;
-
-  progressSnapshot: Observable<any>;
-
   fileUploadedPath: Observable<string>;
-
-  fileName: string;
-  fileSize: number;
-
-  isImgUploading: boolean;
-  isImgUploaded: boolean;
 
   private ngFirestoreCollection: AngularFirestoreCollection<RegulationsModel>;
 
@@ -47,8 +36,7 @@ export class AddRegulationComponent implements OnInit {
     private angularFireStorage: AngularFireStorage,
     private fileChooser: Chooser,
   ) {
-    this.isImgUploading = false;
-    this.isImgUploaded = false;
+
     this.ngFirestoreCollection = angularFirestore.collection<RegulationsModel>('regulations');
   }
 
@@ -94,14 +82,9 @@ export class AddRegulationComponent implements OnInit {
 
   private async sendFiles(): Promise<string> {
     return new Promise(resolve => {
-      this.isImgUploading = true;
-      this.isImgUploaded = false;
-      this.fileName = this.files.name;
       const fileStoragePath = `regulations/${new Date().getTime()}_${this.files.name}`;
       const imageRef = this.angularFireStorage.ref(fileStoragePath);
-
       this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, this.files.data);
-      this.progressNum = this.ngFireUploadTask.percentageChanges();
       this.ngFireUploadTask.snapshotChanges().pipe(
         finalize(() => {
           imageRef.getDownloadURL().subscribe((url) => {
@@ -109,25 +92,15 @@ export class AddRegulationComponent implements OnInit {
 
           });
         }),
-        tap(snap => {
-          this.fileSize = snap.totalBytes;
-        })
       ).subscribe();
     });
   }
 
   private _createForm(): void {
 
-    if (this.regulation) {
-      this.regulationForm = this._formBuilder.group({
-        title: [this.regulation.title, Validators.required],
-      });
-    } else {
-      this.regulationForm = this._formBuilder.group({
-        title: ['', Validators.required],
-      });
-    }
-
+    this.regulationForm = this._formBuilder.group({
+      title: ['', Validators.required],
+    });
   }
 
 }

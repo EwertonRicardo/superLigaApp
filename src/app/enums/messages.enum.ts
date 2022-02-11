@@ -10,4 +10,6 @@ export enum MessagesEnum {
     regulationAdded = 'Regulamento criado com sucesso!',
     regulationUpdated = 'Regulamento editado com sucesso!',
     regulationDeleted = 'Regulamento deletado com sucesso!',
+    rankingDeleted = 'Ranking deletado com sucesso!',
+    rankingAdded = 'Ranking adicionado com sucesso!',
 }

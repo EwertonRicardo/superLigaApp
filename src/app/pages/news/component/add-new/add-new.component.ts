@@ -67,7 +67,7 @@ export class AddNewComponent implements OnInit {
       this.isImgUploading = true;
       this.isImgUploaded = false;
       this.fileName = this.files.name;
-      const fileStoragePath = `filesStorage/${new Date().getTime()}_${this.files.name}`;
+      const fileStoragePath = `news/${new Date().getTime()}_${this.files.name}`;
       const imageRef = this.angularFireStorage.ref(fileStoragePath);
 
       this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, this.files.data);

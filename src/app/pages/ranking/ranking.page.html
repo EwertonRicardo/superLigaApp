@@ -3,16 +3,17 @@
 <ion-content>
 
   <div class="container">
-    <ion-item lines="none" *ngFor="let regulation of [].constructor(10)">
+    <ion-item lines="none" *ngFor="let rank of ranking">
       <ion-label>
-        <h4>Teste</h4>
+        <h4>{{ rank.title }}</h4>
       </ion-label>
-      <ion-icon slot="end" name="download-outline"></ion-icon>
+      <ion-icon slot="end" name="download-outline" (click)="downloadFile(rank.filepath)"></ion-icon>
+      <ion-icon slot="end" name="trash-outline" (click)="deleteRanking(rank)"></ion-icon>
     </ion-item>
   </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="openAddRankingModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
