@@ -6,8 +6,7 @@
         <ion-row class="ion-justify-content-center" *ngIf="file">
             <ion-col size="11">
                 <article>
-                    <img
-                        src="{{file}}">
+                    <img src="{{file}}">
                 </article>
             </ion-col>
         </ion-row>
@@ -25,16 +24,6 @@
                 <ion-textarea rows="10" formControlName="description"></ion-textarea>
             </ion-col>
         </ion-row>
-
-        <ion-card>
-            <ion-card-header>
-              <ion-card-title>Selecione o arquivo</ion-card-title>
-            </ion-card-header>
-        
-            <ion-button class="upload">
-              <input type="file" (change)="fileUpload($event)"/>
-            </ion-button>
-          </ion-card>
     </form>
 
     <ion-row class="ion-justify-content-center button-margin">

@@ -47,48 +47,41 @@ export class AddNewComponent implements OnInit {
     private loadingService: LoadingService,
     private toastService: ToastService,
     private fileChooser: Chooser,
-    ) {
-      this.isImgUploading = false;
-      this.isImgUploaded = false;
-      this.ngFirestoreCollection = angularFirestore.collection<NewsModel>('news');
-     }
+  ) {
+    this.isImgUploading = false;
+    this.isImgUploaded = false;
+    this.ngFirestoreCollection = angularFirestore.collection<NewsModel>('news');
+  }
 
   ngOnInit() {
     this._createForm();
   }
 
-  async fileUpload(event) {
-    this.files =  event.target.files;
-  }
-
   sendFiles() {
-    const filesPath = [];
-    const promises: AngularFireUploadTask[] = [];
-    return new Promise(resolve => {
-    for (const file of this.files) {
-        if (file.type.split('/')[0] !== 'image') {
-          console.log('File type is not supported!');
-          return;
-        }
-        this.isImgUploading = true;
-        this.isImgUploaded = false;
-        this.fileName = file.name;
-        const fileStoragePath = `filesStorage/${new Date().getTime()}_${file.name}`;
-        const imageRef = this.angularFireStorage.ref(fileStoragePath);
 
-        this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, file);
-        this.progressNum = this.ngFireUploadTask.percentageChanges();
-        this.ngFireUploadTask.snapshotChanges().pipe(
-          finalize(() => {
-            imageRef.getDownloadURL().subscribe((url) => {
-              resolve(url);
-            });
-          }),
-          tap(snap => {
-              this.fileSize = snap.totalBytes;
-          })
-        ).subscribe();
-      }
+    return new Promise(resolve => {
+      // if (this.files.type.split('/') !== 'image') {
+      //   console.log('File type is not supported!');
+      //   return;
+      // }
+      this.isImgUploading = true;
+      this.isImgUploaded = false;
+      this.fileName = this.files.name;
+      const fileStoragePath = `filesStorage/${new Date().getTime()}_${this.files.name}`;
+      const imageRef = this.angularFireStorage.ref(fileStoragePath);
+
+      this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, this.files.data);
+      this.progressNum = this.ngFireUploadTask.percentageChanges();
+      this.ngFireUploadTask.snapshotChanges().pipe(
+        finalize(() => {
+          imageRef.getDownloadURL().subscribe((url) => {
+            resolve(url);
+          });
+        }),
+        tap(snap => {
+          this.fileSize = snap.totalBytes;
+        })
+      ).subscribe();
     });
   }
 
@@ -100,7 +93,7 @@ export class AddNewComponent implements OnInit {
       console.log(file);
       const request: NewsModel = {
         title: this.newForm.get('title').value,
-        filespath : file,
+        filespath: file,
         description: this.newForm.get('description').value,
         publishedDate: new Date().getTime()
       };
@@ -119,15 +112,15 @@ export class AddNewComponent implements OnInit {
     try {
       await this.loadingService.present();
       let file = this.file;
-      if(this.files){
-          if(this.file){
-            this.angularFireStorage.storage.refFromURL(this.file).delete();
-          }
-          file = await this.sendFiles();
+      if (this.files) {
+        if (this.file) {
+          this.angularFireStorage.storage.refFromURL(this.file).delete();
+        }
+        file = await this.sendFiles();
       }
       const request: NewsModel = {
         title: this.newForm.get('title').value,
-        filespath : file,
+        filespath: file,
         description: this.newForm.get('description').value,
         publishedDate: new Date().getTime()
       };
@@ -142,15 +135,14 @@ export class AddNewComponent implements OnInit {
   }
 
   public async getFile(): Promise<void> {
-   try {
-     await this.loadingService.present();
-     const file = await this.fileChooser.getFile();
-     console.log(file);
-   } catch (error) {
-     this.toastService.showToast(error);
-   } finally {
-    this.loadingService.dismiss();
-   }
+    try {
+      await this.loadingService.present();
+      this.files = await this.fileChooser.getFile();
+    } catch (error) {
+      this.toastService.showToast(error);
+    } finally {
+      this.loadingService.dismiss();
+    }
   }
 
   private _createForm(): void {
