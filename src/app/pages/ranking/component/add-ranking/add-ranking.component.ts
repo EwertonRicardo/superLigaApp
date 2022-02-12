@@ -59,6 +59,10 @@ export class AddRankingComponent implements OnInit {
     try {
       await this.loadingService.present();
 
+      if(!this.file) {
+        return this.toastService.showToast(MessagesEnum.requiredDocumentation);
+      }
+
       const file = await this.sendFiles();
       const request: RankingModel = {
         title: this.rankingForm.get('title').value,

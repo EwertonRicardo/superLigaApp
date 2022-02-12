@@ -24,7 +24,7 @@
       <ion-button mode="md" fill="clear" class="clear-button" (click)="getFile()">
         <ion-icon name="images"></ion-icon>
       </ion-button>
-      <ion-button class="custom-button" (click)="addRanking()">Adicionar</ion-button>
+      <ion-button class="custom-button" (click)="addRanking()" [disabled]="rankingForm.invalid">Adicionar</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

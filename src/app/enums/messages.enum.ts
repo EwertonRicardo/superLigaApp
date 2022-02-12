@@ -15,5 +15,6 @@ export enum MessagesEnum {
     rankingDeleted = 'Ranking deletado com sucesso!',
     rankingAdded = 'Ranking adicionado com sucesso!',
 
+    requiredDocumentation = 'Necessário inserir um documento',
 
 }
