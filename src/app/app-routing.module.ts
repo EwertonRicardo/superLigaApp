@@ -8,10 +8,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
-  {
     path: 'news',
     loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule)
   },
@@ -42,9 +38,14 @@ const routes: Routes = [
   {
     path: 'regulations',
     loadChildren: () => import('./pages/regulations/regulations.module').then( m => m.RegulationsPageModule)
-  },  {
+  },
+  {
     path: 'ranking',
     loadChildren: () => import('./pages/ranking/ranking.module').then( m => m.RankingPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   }
 
 
