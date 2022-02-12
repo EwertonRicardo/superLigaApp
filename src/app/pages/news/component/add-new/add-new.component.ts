@@ -90,7 +90,7 @@ export class AddNewComponent implements OnInit {
       await this.loadingService.present();
 
       if(!this.file) {
-        return this.toastService.showToast(MessagesEnum.newsRequired, 'toast-error');
+        return this.toastService.showToast(MessagesEnum.requiredImage, 'toast-error');
       }
       const file = await this.sendFiles();
       const request: NewsModel = {
@@ -114,7 +114,7 @@ export class AddNewComponent implements OnInit {
     try {
       await this.loadingService.present();
       if(!this.file) {
-        return this.toastService.showToast(MessagesEnum.newsRequired, 'toast-error');
+        return this.toastService.showToast(MessagesEnum.requiredImage, 'toast-error');
       }
       let file = this.file;
       if (this.files) {

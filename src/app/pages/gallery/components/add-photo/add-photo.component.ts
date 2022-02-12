@@ -96,6 +96,9 @@ export class AddPhotoComponent implements OnInit {
     try {
       await this.loadingService.present();
 
+      if(!this.files) {
+        return this.toastService.showToast(MessagesEnum.requiredImage);
+      }
       const files = await this.sendFiles();
 
       const request: PhotosModel = {
@@ -118,6 +121,10 @@ export class AddPhotoComponent implements OnInit {
   public async updateGallery(): Promise<void> {
     try {
       await this.loadingService.present();
+
+      if(!this.files) {
+        return this.toastService.showToast(MessagesEnum.requiredImage);
+      }
 
       if(this.files){
         await this.sendFiles();

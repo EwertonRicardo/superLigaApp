@@ -16,7 +16,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-list  mode="md" *ngFor="let path of filesList; let i = index">
+    <ion-list mode="md" *ngFor="let path of filesList; let i = index">
       <ion-item lines="full">
         <ion-thumbnail slot="start">
           <img [src]="path" />
@@ -36,8 +36,10 @@
         </label>
         <input type="file" id="file-upload" (change)="fileUpload($event)" multiple />
       </ion-button>
-      <ion-button class="custom-button" (click)="addPhoto()" *ngIf="!photo">Adicionar Galeria</ion-button>
-      <ion-button class="custom-button" (click)="updateGallery()" *ngIf="photo">Editar Galeria</ion-button>
+      <ion-button class="custom-button" (click)="addPhoto()" *ngIf="!photo" [disabled]="photoForm.invalid">Adicionar Galeria</ion-button>
+      <ion-button class="custom-button" (click)="updateGallery()" *ngIf="photo" [disabled]="photoForm.invalid">
+        Editar Galeria
+      </ion-button>
     </ion-col>
   </ion-row>
 </ion-content>
