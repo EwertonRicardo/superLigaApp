@@ -6,4 +6,6 @@ export interface GamesModel {
     gameNumber: string;
     gender: string;
     place: string;
+    fisrtTeamScore: number;
+    secondTeamScore: string;
 }

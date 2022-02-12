@@ -37,6 +37,13 @@
                 </ion-select>
             </ion-col>
         </ion-row>
+        
+        <ion-row class="ion-justify-content-center  ">
+            <ion-col size="11">
+                <ion-label>Placar do primeiro time</ion-label>
+                <ion-input type="tel" formControlName="fisrtTeamScore"></ion-input>
+            </ion-col>
+        </ion-row>
 
         <ion-row class="ion-justify-content-center" *ngIf="teams">
             <ion-col size="11">
@@ -49,19 +56,12 @@
             </ion-col>
         </ion-row>
 
-        <!-- <ion-row class="ion-justify-content-center">
-        <ion-col size="11">
-            <ion-label>Primeira equipe</ion-label>
-            <ion-input type="text" formControlName="fisrtTeam"></ion-input>
-        </ion-col>
-    </ion-row> -->
-
-        <!-- <ion-row class="ion-justify-content-center">
-        <ion-col size="11">
-            <ion-label>Segunda equipe</ion-label>
-            <ion-input type="text" formControlName="secondTeam"></ion-input>
-        </ion-col>
-    </ion-row> -->
+        <ion-row class="ion-justify-content-center  ">
+            <ion-col size="11">
+                <ion-label>Placar do segundo time</ion-label>
+                <ion-input type="tel" formControlName="secondTeamScore"></ion-input>
+            </ion-col>
+        </ion-row>
 
         <ion-row class="ion-justify-content-center">
             <ion-col size="11">
@@ -71,15 +71,6 @@
             </ion-col>
         </ion-row>
 
-        <!-- <ion-row class="ion-justify-content-center">
-        <ion-col size="11">
-            <ion-label>Horário do jogo</ion-label>
-            <ion-input type="text" formControlName=""></ion-input>
-        </ion-col>
-    </ion-row> -->
-
-        <!-- <ion-datetime value="1990-02-19" placeholder="Select Date"></ion-datetime> 
-    <ion-datetime display-format="HH:mm" picker-format="HH:mm" value="1990-02-19T07:43Z"></ion-datetime> -->
 
     </form>
 

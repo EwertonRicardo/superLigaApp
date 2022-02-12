@@ -25,26 +25,26 @@
                   <ion-col class="ion-no-padding">
 
                     <div class="ion-text-center">
-                      <p class="meeting-title">{{gameMale.gameNumber}}</p>
+                      <p class="meeting-title">#{{gameMale.gameNumber}}</p>
                     </div>
                     <div class="container-teams">
                       <div class="team">
                         <img src="{{gameMale.fisrtTeam}}">
+                        <span>{{ gameMale.fisrtTeamScore}}</span>
                       </div>
-                      <ion-icon name="close-outline" ></ion-icon>
+                      <ion-icon name="close-outline"></ion-icon>
                       <div class="team">
                         <img src="{{gameMale.secondTeam}}">
+                        <span>{{ gameMale.secondTeamScore}}</span>
                       </div>
                     </div>
                     <div class="ion-text-center">
                       <div class="flex">
-                        <!-- <ion-icon name="location-outline"></ion-icon> -->
                         <p class="meeting-hours">
                           {{gameMale.place}}
                         </p>
                       </div>
                       <div class="flex">
-                        <!-- <ion-icon name="time-outline"></ion-icon> -->
                         <p class="meeting-hours">
                           {{gameMale.gameDate | date:'dd/MM/yyyy'}} - {{gameMale.gameDate | date:'H:mm'}}
                         </p>
@@ -60,31 +60,6 @@
                 </ion-row>
               </ion-card-content>
             </ion-card>
-
-            <!-- <ion-card class="meeting-card" mode="ios" *ngFor="let gameMale of gamesMale">
-              <ion-card-content class="meeting-card-content">
-                <ion-row>
-                  <ion-col>
-                    <p class="meeting-title">{{gameMale.gameNumber}}</p>
-                    <p class="meeting-title">{{gameMale.fisrtTeam}}</p>
-                    <p class="meeting-title">{{gameMale.secondTeam}}</p>
-                    <p class="meeting-hours">
-                      <ion-icon name="location-outline"></ion-icon>
-                      {{gameMale.place}}</p>
-                    <p class="meeting-hours">
-                      <ion-icon name="time-outline"></ion-icon>
-                      {{gameMale.gameDate | date:'dd/MM/yyyy'}} - {{gameMale.gameDate | date:'H:mm'}}</p>
-                  </ion-col>
-                </ion-row>
-                <ion-row class="ion-text-right action-buttons">
-                  <ion-col class="ion-no-padding">
-                    <ion-icon name="create-outline" (click)="updateGame(gameMale)"></ion-icon>
-                    <ion-icon name="trash-outline" (click)="deleteGame(gameMale.id)"></ion-icon>
-                  </ion-col>
-                </ion-row>
-              </ion-card-content>
-            </ion-card> -->
-
           </div>
         </div>
       </div>
@@ -102,28 +77,26 @@
                   <ion-col>
 
                     <div class="ion-text-center">
-                      <p class="meeting-title">{{gameFemale.gameNumber}}</p>
+                      <p class="meeting-title">#{{gameFemale.gameNumber}}</p>
                     </div>
                     <div class="container-teams">
                       <div class="team">
                         <img src="{{gameFemale.fisrtTeam}}">
-                        <!-- <h4>Sport</h4> -->
+                        <span>{{ gameFemale.fisrtTeamScore}}</span>
                       </div>
                       <ion-icon name="close-outline" style="font-size: 3rem;"></ion-icon>
                       <div class="team">
                         <img src="{{gameFemale.secondTeam}}">
-                        <!-- <h4>Santa Cruz</h4> -->
+                        <span>{{ gameFemale.secondTeamScore}}</span>
                       </div>
                     </div>
                     <div class="ion-text-center">
                       <div class="flex">
-                        <!-- <ion-icon name="location-outline"></ion-icon> -->
                         <p class="meeting-hours">
                           {{gameFemale.place}}
                         </p>
                       </div>
                       <div class="flex">
-                        <!-- <ion-icon name="time-outline"></ion-icon> -->
                         <p class="meeting-hours">
                           {{gameFemale.gameDate | date:'dd/MM/yyyy'}} - {{gameFemale.gameDate | date:'H:mm'}}
                         </p>
@@ -139,31 +112,6 @@
                 </ion-row>
               </ion-card-content>
             </ion-card>
-
-            <!-- <ion-card class="meeting-card" mode="ios" *ngFor="let gameFemale of gamesFemale">
-              <ion-card-content class="meeting-card-content">
-                <ion-row>
-                  <ion-col>
-                    <p class="meeting-title">{{gameFemale.gameNumber}}</p>
-                    <p class="meeting-title">{{gameFemale.fisrtTeam}}</p>
-                    <p class="meeting-title">{{gameFemale.secondTeam}}</p>
-                    <p class="meeting-hours">
-                      <ion-icon name="location-outline"></ion-icon>
-                      {{gameFemale.place}}</p>
-                    <p class="meeting-hours">
-                      <ion-icon name="time-outline"></ion-icon>
-                      {{gameFemale.gameDate | date:'dd/MM/yyyy'}} - {{gameFemale.gameDate | date:'H:mm'}}</p>
-                  </ion-col>
-                </ion-row>
-                <ion-row class="ion-text-right action-buttons">
-                  <ion-col class="ion-no-padding">
-                    <ion-icon name="create-outline" (click)="updateGame(gameFemale)"></ion-icon>
-                    <ion-icon name="trash-outline" (click)="deleteGame(gameFemale.id)"></ion-icon>
-                  </ion-col>
-                </ion-row>
-              </ion-card-content>
-            </ion-card> -->
-
           </div>
         </div>
       </div>

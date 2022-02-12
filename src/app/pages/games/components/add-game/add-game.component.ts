@@ -48,6 +48,8 @@ export class AddGameComponent implements OnInit {
         gameNumber:  this.gameForm.get('gameNumber').value,
         gender:  this.gameForm.get('gender').value,
         place:  this.gameForm.get('place').value,
+        fisrtTeamScore: this.gameForm.get('fisrtTeamScore').value,
+        secondTeamScore: this.gameForm.get('secondTeamScore').value
       };
 
       await this.gamesService.create(request);
@@ -104,6 +106,8 @@ export class AddGameComponent implements OnInit {
         gameDate: [this.game.gameDate, Validators.required],
         gender: [this.game.gender, Validators.required],
         place: [this.game.place, Validators.required],
+        fisrtTeamScore: [this.game.fisrtTeamScore],
+        secondTeamScore: [this.game.secondTeamScore],
       });
     } else {
       this.gameForm = this._formBuilder.group({
@@ -113,6 +117,8 @@ export class AddGameComponent implements OnInit {
         gameDate: ['', Validators.required],
         gender: ['', Validators.required],
         place: ['', Validators.required],
+        fisrtTeamScore: [''],
+        secondTeamScore: ['']
       });
     }
   }
