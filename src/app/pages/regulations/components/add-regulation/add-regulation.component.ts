@@ -48,6 +48,9 @@ export class AddRegulationComponent implements OnInit {
     try {
       await this.loadingService.present();
 
+      if(!this.files) {
+        return this.toastService.showToast(MessagesEnum.requiredDocumentation);
+      }
       const file = await this.sendFiles();
       const request: RegulationsModel = {
         title: this.regulationForm.get('title').value,
