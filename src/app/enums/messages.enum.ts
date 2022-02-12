@@ -1,6 +1,8 @@
 export enum MessagesEnum {
     newsAdded = 'Notícia adicionada com sucesso!',
     newsUpdated = 'Notícia editada com sucesso!',
+    newsRequired = 'Necessário inserir uma imagem!',
+
     gamesAdded = 'Jogo adicionado com sucesso!',
     gamesDeletedSuccess = 'Jogo deletado com sucesso!',
     gameUpdated = 'Jogo editado com sucesso!',
@@ -12,4 +14,6 @@ export enum MessagesEnum {
     regulationDeleted = 'Regulamento deletado com sucesso!',
     rankingDeleted = 'Ranking deletado com sucesso!',
     rankingAdded = 'Ranking adicionado com sucesso!',
+
+
 }

@@ -1,11 +1,9 @@
-img{
-    height: 187px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
 ion-col{
     padding: 0px;
 }
 
+.icon-action{
+    padding: 10px;
+    font-size: 25px;
+    color: var(--ion-color-medium-shade);
+}

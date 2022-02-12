@@ -3,14 +3,6 @@
 <ion-content>
     <form [formGroup]="newForm">
 
-        <ion-row class="ion-justify-content-center" *ngIf="file">
-            <ion-col size="11">
-                <article>
-                    <img src="{{file}}">
-                </article>
-            </ion-col>
-        </ion-row>
-
         <ion-row class="ion-justify-content-center">
             <ion-col size="11">
                 <ion-label>Título</ion-label>
@@ -26,13 +18,26 @@
         </ion-row>
     </form>
 
+    <ion-item lines="full" *ngIf="file">
+        <ion-thumbnail slot="start">
+            <img [src]="file" />
+        </ion-thumbnail>
+        <ion-buttons slot="end">
+            <ion-icon name="trash-outline" class="icon-action" (click)="deleteFile()"></ion-icon>
+        </ion-buttons>
+    </ion-item>
+
     <ion-row class="ion-justify-content-center button-margin">
         <ion-col size="11">
-            <ion-button mode="md" fill="clear" class="clear-button" (click)="getFile()" *ngIf="!news">
+            <ion-button mode="md" fill="clear" class="clear-button" (click)="getFile()">
                 <ion-icon name="images"></ion-icon>
             </ion-button>
-            <ion-button mode="md" class="custom-button" (click)="addNote()" *ngIf="!news">Adicionar</ion-button>
-            <ion-button class="custom-button" (click)="editNew()" *ngIf="news">Editar</ion-button>
+            <ion-button mode="md" class="custom-button" (click)="addNote()" *ngIf="!news" [disabled]="newForm.invalid">
+                Adicionar
+            </ion-button>
+            <ion-button class="custom-button" (click)="editNew()" *ngIf="news" [disabled]="newForm.invalid">
+                Editar
+            </ion-button>
         </ion-col>
     </ion-row>
 </ion-content>

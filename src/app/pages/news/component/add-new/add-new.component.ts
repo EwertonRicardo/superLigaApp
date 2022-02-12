@@ -89,8 +89,10 @@ export class AddNewComponent implements OnInit {
     try {
       await this.loadingService.present();
 
+      if(!this.file) {
+        return this.toastService.showToast(MessagesEnum.newsRequired, 'toast-error');
+      }
       const file = await this.sendFiles();
-      console.log(file);
       const request: NewsModel = {
         title: this.newForm.get('title').value,
         filespath: file,
@@ -111,6 +113,9 @@ export class AddNewComponent implements OnInit {
   public async editNew(): Promise<void> {
     try {
       await this.loadingService.present();
+      if(!this.file) {
+        return this.toastService.showToast(MessagesEnum.newsRequired, 'toast-error');
+      }
       let file = this.file;
       if (this.files) {
         if (this.file) {
@@ -145,6 +150,9 @@ export class AddNewComponent implements OnInit {
     }
   }
 
+  public deleteFile(): void {
+    this.file = null;
+  }
   private _createForm(): void {
 
     if (this.news) {
