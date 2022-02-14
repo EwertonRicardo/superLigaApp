@@ -1,6 +1,6 @@
 {
-	"appId": "com.superliga",
-	"appName": "superLiga",
+	"appId": "com.ligaPernambucanaDeVoleibol",
+	"appName": "Liga Pernambucana de Vôleibol",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }
