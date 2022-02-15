@@ -27,7 +27,7 @@ export class TableGamesPage implements OnInit {
     ) { }
 
   async ngOnInit() {
-    await this.get();
+    await this.getTableGame();
   }
 
   public async openAddDetailModal(regulation?: TableGameModel): Promise<void> {
@@ -38,7 +38,7 @@ export class TableGamesPage implements OnInit {
     await modal.present();
   }
 
-  public async deleteRegulation(table: TableGameModel): Promise<void> {
+  public async deleteTableGame(table: TableGameModel): Promise<void> {
     try {
       await this.loadingService.present();
 
@@ -66,7 +66,7 @@ export class TableGamesPage implements OnInit {
     }
   }
 
-  private async get(): Promise<void> {
+  private async getTableGame(): Promise<void> {
     try {
       await this.loadingService.present();
 

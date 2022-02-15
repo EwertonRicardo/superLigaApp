@@ -61,7 +61,7 @@ export class AddComponent implements OnInit {
 
       await this.tableGamesService.create(request);
       this.tablesForm.reset();
-      await this.toastService.showToast(MessagesEnum.regulationAdded, 'toast-success');
+      await this.toastService.showToast(MessagesEnum.tableGameAdded, 'toast-success');
     } catch (error) {
       console.error(error);
     } finally {

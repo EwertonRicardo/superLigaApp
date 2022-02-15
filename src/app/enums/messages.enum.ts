@@ -12,7 +12,7 @@ export enum MessagesEnum {
     regulationDeleted = 'Regulamento deletado com sucesso!',
     rankingDeleted = 'Ranking deletado com sucesso!',
     rankingAdded = 'Ranking adicionado com sucesso!',
-
+    tableGameAdded = 'Tabela de jogos criada com sucesso!',
     requiredDocumentation = 'Necessário inserir um documento',
     requiredImage = 'Necessário inserir uma imagem!',
 }
