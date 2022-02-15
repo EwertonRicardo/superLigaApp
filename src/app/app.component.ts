@@ -10,6 +10,7 @@ export class AppComponent {
     { title: 'Notícias', url: '/news', icon: 'newspaper' },
     { title: 'Equipes', url: '/teams', icon: 'people' },
     { title: 'Jogos', url: '/games', icon: 'game-controller' },
+    { title: 'Tabela de Jogos', url: '/table-games', icon: 'game-controller' },
     { title: 'Ranking', url: '/ranking', icon: 'star' },
     { title: 'Galeria de fotos', url: '/gallery', icon: 'images' },
     { title: 'Documentos', url: '/regulations', icon: 'document-text' },

@@ -1,0 +1,21 @@
+<app-header title="Documentos"></app-header>
+
+<ion-content>
+
+  <div class="container">
+    <ion-item lines="none" *ngFor="let table of tables">
+      <ion-label>
+        <h4>{{table.title}}</h4>
+      </ion-label>
+      <ion-icon slot="end" name="download-outline" (click)="downloadFile(table.filepath)"></ion-icon>
+      <ion-icon slot="end" name="trash-outline" (click)="deleteRegulation(table)"></ion-icon>
+    </ion-item>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openAddDetailModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

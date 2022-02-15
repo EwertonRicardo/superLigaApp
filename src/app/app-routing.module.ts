@@ -46,7 +46,11 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },  {
+    path: 'table-games',
+    loadChildren: () => import('./pages/table-games/table-games.module').then( m => m.TableGamesPageModule)
   }
+
 
 
 ];
