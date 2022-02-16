@@ -60,6 +60,7 @@ export class AddRegulationComponent implements OnInit {
 
       await this.regulationsService.create(request);
       this.regulationForm.reset();
+      this.files = null;
       await this.toastService.showToast(MessagesEnum.regulationAdded, 'toast-success');
     } catch (error) {
       console.error(error);

@@ -72,6 +72,7 @@ export class AddRankingComponent implements OnInit {
 
       await this.rankingService.createRanking(request);
       this.rankingForm.reset();
+      this.file = null;
       await this.toastService.showToast(MessagesEnum.rankingAdded, 'toast-success');
     } catch (error) {
       console.error(error);

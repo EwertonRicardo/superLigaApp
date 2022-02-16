@@ -131,6 +131,7 @@ export class AddNewComponent implements OnInit {
       };
 
       await this.newsService.updateNew(request, this.news.id);
+      this.file = null;
       await this.toastService.showToast(MessagesEnum.newsUpdated, 'toast-success');
     } catch (error) {
       console.error(error);
