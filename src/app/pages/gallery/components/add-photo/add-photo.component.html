@@ -16,16 +16,28 @@
       </ion-col>
     </ion-row>
 
-    <ion-list mode="md" *ngFor="let path of filesList; let i = index">
+    <ion-list mode="md" *ngFor="let file of filesList; let i = index">
       <ion-item lines="full">
         <ion-thumbnail slot="start">
-          <img [src]="path" />
+          <img [src]="file" />
         </ion-thumbnail>
         <ion-buttons slot="end">
           <ion-icon name="trash-outline" class="icon-action" (click)="removeImageList(i)"></ion-icon>
         </ion-buttons>
       </ion-item>
     </ion-list>
+
+    <ion-list mode="md" *ngFor="let file of files; let i = index">
+      <ion-item lines="full">
+        <ion-label class="image-name">
+          {{ file.name }}
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-icon name="trash-outline" class="icon-action" ></ion-icon>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+
 
   </form>
   <ion-row class="ion-justify-content-center button-margin">

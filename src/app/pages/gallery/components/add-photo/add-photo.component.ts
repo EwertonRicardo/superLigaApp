@@ -110,6 +110,7 @@ export class AddPhotoComponent implements OnInit {
 
       await this.galleryService.create(request);
       this.photoForm.reset();
+      this.files = null;
       await this.toastService.showToast(MessagesEnum.gallerySuccess, 'toast-success');
     } catch (error) {
       console.error(error);
@@ -137,6 +138,7 @@ export class AddPhotoComponent implements OnInit {
         publishedDate:  new Date().getTime()
       };
       await this.galleryService.update(request, this.photo.id);
+      this.files = null;
       await this.toastService.showToast(MessagesEnum.galleryUpdated, 'toast-success');
     } catch (error) {
       console.error(error);
