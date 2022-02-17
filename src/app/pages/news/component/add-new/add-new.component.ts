@@ -32,6 +32,7 @@ export class AddNewComponent implements OnInit {
   progressSnapshot: Observable<any>;
 
   fileUploadedPath: Observable<string>;
+  isEditFile = false;
 
   fileName: string;
   fileSize: number;
@@ -60,17 +61,10 @@ export class AddNewComponent implements OnInit {
   sendFiles() {
 
     return new Promise(resolve => {
-      // if (this.files.type.split('/') !== 'image') {
-      //   console.log('File type is not supported!');
-      //   return;
-      // }
-      this.isImgUploading = true;
-      this.isImgUploaded = false;
-      this.fileName = this.files.name;
-      const fileStoragePath = `news/${new Date().getTime()}_${this.files.name}`;
+      const fileStoragePath = `news/${new Date().getTime()}_${this.file.name}`;
       const imageRef = this.angularFireStorage.ref(fileStoragePath);
 
-      this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, this.files.data);
+      this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, this.file.data);
       this.progressNum = this.ngFireUploadTask.percentageChanges();
       this.ngFireUploadTask.snapshotChanges().pipe(
         finalize(() => {
@@ -89,7 +83,7 @@ export class AddNewComponent implements OnInit {
     try {
       await this.loadingService.present();
 
-      if(!this.file) {
+      if (!this.file) {
         return this.toastService.showToast(MessagesEnum.requiredImage, 'toast-error');
       }
       const file = await this.sendFiles();
@@ -102,6 +96,7 @@ export class AddNewComponent implements OnInit {
 
       await this.newsService.create(request);
       this.newForm.reset();
+      this.file = null;
       await this.toastService.showToast(MessagesEnum.newsAdded, 'toast-success');
     } catch (error) {
       console.error(error);
@@ -113,25 +108,19 @@ export class AddNewComponent implements OnInit {
   public async editNew(): Promise<void> {
     try {
       await this.loadingService.present();
-      if(!this.file) {
+      if (!this.file) {
         return this.toastService.showToast(MessagesEnum.requiredImage, 'toast-error');
       }
-      let file = this.file;
-      if (this.files) {
-        if (this.file) {
-          this.angularFireStorage.storage.refFromURL(this.file).delete();
-        }
-        file = await this.sendFiles();
-      }
+      this.file = await this.sendFiles();
       const request: NewsModel = {
         title: this.newForm.get('title').value,
-        filespath: file,
+        filespath: this.file,
         description: this.newForm.get('description').value,
         publishedDate: new Date().getTime()
       };
 
       await this.newsService.updateNew(request, this.news.id);
-      this.file = null;
+      this.isEditFile = false;
       await this.toastService.showToast(MessagesEnum.newsUpdated, 'toast-success');
     } catch (error) {
       console.error(error);
@@ -143,7 +132,11 @@ export class AddNewComponent implements OnInit {
   public async getFile(): Promise<void> {
     try {
       await this.loadingService.present();
-      this.files = await this.fileChooser.getFile();
+      if (this.file) {
+        return this.toastService.showToast(MessagesEnum.newDelete);
+      }
+      this.file = await this.fileChooser.getFile();
+      this.isEditFile = true;
     } catch (error) {
       this.toastService.showToast(error);
     } finally {
@@ -151,8 +144,18 @@ export class AddNewComponent implements OnInit {
     }
   }
 
-  public deleteFile(): void {
-    this.file = null;
+  public async deleteFile(): Promise<void> {
+    try {
+      await this.loadingService.present();
+      await this.angularFireStorage.storage.refFromURL(this.file).delete();
+      this.file = null;
+      this.isEditFile = true;
+
+    } catch (error) {
+      this.toastService.showToast(MessagesEnum.genericMessage);
+    } finally {
+      this.loadingService.dismiss();
+    }
   }
   private _createForm(): void {
 

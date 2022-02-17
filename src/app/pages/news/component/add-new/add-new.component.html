@@ -18,7 +18,7 @@
         </ion-row>
     </form>
 
-    <ion-item lines="full" *ngIf="file">
+    <ion-item lines="full" *ngIf="!isEditFile && file">
         <ion-thumbnail slot="start">
             <img [src]="file" />
         </ion-thumbnail>
@@ -26,6 +26,17 @@
             <ion-icon name="trash-outline" class="icon-action" (click)="deleteFile()"></ion-icon>
         </ion-buttons>
     </ion-item>
+
+    <ion-list mode="md" *ngIf="isEditFile && file">
+        <ion-item lines="full">
+          <ion-label class="image-name">
+            {{ file.name }}
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-icon name="trash-outline" class="icon-action" ></ion-icon>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
 
     <ion-row class="ion-justify-content-center button-margin">
         <ion-col size="11">
