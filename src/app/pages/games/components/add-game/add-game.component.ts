@@ -61,7 +61,7 @@ export class AddGameComponent implements OnInit {
       this.gameForm.reset();
       await this.toastService.showToast(MessagesEnum.gamesAdded, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(error);
     } finally {
       this.loadingService.dismiss();
     }
@@ -74,7 +74,7 @@ export class AddGameComponent implements OnInit {
       await this.gamesService.updateGame(this.gameForm.value, this.game.id);
       await this.toastService.showToast(MessagesEnum.gameUpdated, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(error);
     } finally {
       this.loadingService.dismiss();
     }

@@ -113,7 +113,7 @@ export class AddPhotoComponent implements OnInit {
       this.files = null;
       await this.toastService.showToast(MessagesEnum.gallerySuccess, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }
@@ -141,7 +141,7 @@ export class AddPhotoComponent implements OnInit {
       this.files = null;
       await this.toastService.showToast(MessagesEnum.galleryUpdated, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }

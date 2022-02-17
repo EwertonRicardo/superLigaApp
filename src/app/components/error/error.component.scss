@@ -1,0 +1,19 @@
+.container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.container img {
+    width: 80%;
+    max-width: 500px;
+}
+
+.container p {
+    font-size: 15px;
+    color: var(--ion-color-medium-shade);
+    text-align: center;
+}

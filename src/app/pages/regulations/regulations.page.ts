@@ -1,3 +1,4 @@
+import { ErrorModalService } from './../../services/error-modal/error-modal.service';
 import { FileManagerService } from './../../services/file-manager/file-manager.service';
 import { LoadingService } from './../../services/loading/loading.service';
 import { RegulationsModel } from './../../models/regulations.model';
@@ -23,6 +24,7 @@ export class RegulationsPage implements OnInit {
     private loadingService: LoadingService,
     private fileManager: FileManagerService,
     private angularFireStorage: AngularFireStorage,
+    private errorModalService: ErrorModalService
     ) { }
 
   async ngOnInit() {
@@ -48,7 +50,7 @@ export class RegulationsPage implements OnInit {
       await this.regulationsService.delete(regulation.id);
       await this.toastService.showToast(MessagesEnum.regulationDeleted, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }
@@ -59,7 +61,7 @@ export class RegulationsPage implements OnInit {
       await this.loadingService.present();
       await this.fileManager.downloadFile(url);
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }
@@ -72,7 +74,7 @@ export class RegulationsPage implements OnInit {
       this.regulationsService.get().subscribe(result => this.regulations = result);
 
     } catch (error) {
-      console.error(error);
+      this.errorModalService.openModalError();
     } finally {
       this.loadingService.dismiss();
     }

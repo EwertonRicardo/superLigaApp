@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { NewsService } from './../../services/news/news.service';
 import { NewsModel } from './../../models/news.model';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { ErrorModalService } from 'src/app/services/error-modal/error-modal.service';
 
 @Component({
   selector: 'app-news',
@@ -20,7 +21,8 @@ export class NewsPage implements OnInit {
     private modalCtrl: ModalController,
     private loadingService: LoadingService,
     private angularFireStorage: AngularFireStorage,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private errorModalService: ErrorModalService
     ) { }
 
   async ngOnInit() {
@@ -68,7 +70,7 @@ export class NewsPage implements OnInit {
       this.newsService.getNews().subscribe(result => this.news = result);
 
     } catch (error) {
-      this.toastService.showToast(error);
+      this.errorModalService.openModalError();
     } finally {
       this.loadingService.dismiss();
     }

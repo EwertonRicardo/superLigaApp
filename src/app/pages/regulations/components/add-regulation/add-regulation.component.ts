@@ -63,7 +63,7 @@ export class AddRegulationComponent implements OnInit {
       this.files = null;
       await this.toastService.showToast(MessagesEnum.regulationAdded, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }
@@ -74,7 +74,7 @@ export class AddRegulationComponent implements OnInit {
       await this.loadingService.present();
       this.files = await this.fileChooser.getFile();
     } catch (error) {
-      this.toastService.showToast(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }

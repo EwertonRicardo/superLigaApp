@@ -1,3 +1,4 @@
+import { ErrorModalService } from './../../services/error-modal/error-modal.service';
 import { RankingModel } from './../../models/ranking.model';
 import { RankingService } from './../../services/ranking/ranking.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,6 +24,7 @@ export class RankingPage implements OnInit {
     private loadingService: LoadingService,
     private fileManager: FileManagerService,
     private angularFireStorage: AngularFireStorage,
+    private errorModalService: ErrorModalService
   ) { }
 
   async ngOnInit() {
@@ -47,7 +49,7 @@ export class RankingPage implements OnInit {
       await this.rankingService.deleteRanking(ranking.id);
       await this.toastService.showToast(MessagesEnum.rankingDeleted, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(error);
     } finally {
       this.loadingService.dismiss();
     }
@@ -58,7 +60,7 @@ export class RankingPage implements OnInit {
       await this.loadingService.present();
       await this.fileManager.downloadFile(url);
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }
@@ -71,7 +73,7 @@ export class RankingPage implements OnInit {
       this.rankingService.getRanking().subscribe(result => this.ranking = result);
 
     } catch (error) {
-      console.error(error);
+      this.errorModalService.openModalError();
     } finally {
       this.loadingService.dismiss();
     }

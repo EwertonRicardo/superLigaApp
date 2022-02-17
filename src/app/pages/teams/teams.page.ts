@@ -2,6 +2,7 @@ import { TeamsService } from './../../services/teams/teams.service';
 import { TeamsModel } from './../../models/teams.model';
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/services/loading/loading.service';
+import { ErrorModalService } from 'src/app/services/error-modal/error-modal.service';
 
 @Component({
   selector: 'app-teams',
@@ -15,7 +16,8 @@ export class TeamsPage implements OnInit {
   teamsFemale: TeamsModel[];
   constructor(
     private loadingService: LoadingService,
-    private teamsService: TeamsService
+    private teamsService: TeamsService,
+    private errorModalService: ErrorModalService
   ) { }
 
   async ngOnInit() {
@@ -30,7 +32,7 @@ export class TeamsPage implements OnInit {
         this.teamsMale = teams.filter(({gender}) => gender === 'male');
       });
     } catch (error) {
-      console.error(error);
+      this.errorModalService.openModalError();
     } finally {
       this.loadingService.dismiss();
     }

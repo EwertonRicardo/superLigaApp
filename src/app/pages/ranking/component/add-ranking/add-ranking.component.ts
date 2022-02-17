@@ -49,7 +49,7 @@ export class AddRankingComponent implements OnInit {
       await this.loadingService.present();
       this.file = await this.fileChooser.getFile();
     } catch (error) {
-      this.toastService.showToast(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }
@@ -75,7 +75,7 @@ export class AddRankingComponent implements OnInit {
       this.file = null;
       await this.toastService.showToast(MessagesEnum.rankingAdded, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }

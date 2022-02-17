@@ -1,3 +1,4 @@
+import { ErrorModalService } from './../../services/error-modal/error-modal.service';
 import { AddPhotoComponent } from './components/add-photo/add-photo.component';
 import { Component, OnInit } from '@angular/core';
 import { GalleryService } from './../../services/gallery/gallery.service';
@@ -28,6 +29,7 @@ export class GalleryPage implements OnInit {
     private toastService: ToastService,
     private modalCtrl: ModalController,
     private angularFireStorage: AngularFireStorage,
+    private errorModalService: ErrorModalService
   ) {}
 
   async ngOnInit() {
@@ -54,7 +56,7 @@ export class GalleryPage implements OnInit {
       await this.galleryService.delete(gallery.id);
       await this.toastService.showToast(MessagesEnum.galleryDeleted, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }
@@ -68,7 +70,7 @@ export class GalleryPage implements OnInit {
         this.photos = result;
       });
     } catch (error) {
-      console.error(error);
+      this.errorModalService.openModalError();
     } finally {
       this.loadingService.dismiss();
     }

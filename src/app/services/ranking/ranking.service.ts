@@ -1,3 +1,4 @@
+import { MessagesEnum } from './../../enums/messages.enum';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
@@ -17,7 +18,7 @@ export class RankingService {
     try {
       await this.ngFirestore.collection('ranking').add(ranking);
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
 
@@ -42,7 +43,7 @@ export class RankingService {
     try {
       await this.ngFirestore.doc('ranking/' + id).delete();
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
 }

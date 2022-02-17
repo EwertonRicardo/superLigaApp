@@ -6,6 +6,7 @@ import { GamesService } from './../../services/games/games.service';
 import { ToastService } from './../../services/toast/toast.service';
 import { GamesModel } from './../../models/games.model';
 import { MessagesEnum } from 'src/app/enums/messages.enum';
+import { ErrorModalService } from 'src/app/services/error-modal/error-modal.service';
 @Component({
   selector: 'app-games',
   templateUrl: './games.page.html',
@@ -20,7 +21,8 @@ export class GamesPage implements OnInit {
     private modalCtrl: ModalController,
     private gamesService: GamesService,
     private toastService: ToastService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private errorModalService: ErrorModalService
   ) { }
 
   async ngOnInit() {
@@ -42,7 +44,7 @@ export class GamesPage implements OnInit {
       await this.gamesService.delete(gameID);
       await this.toastService.showToast(MessagesEnum.gamesDeletedSuccess, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(error);
     } finally {
       this.loadingService.dismiss();
     }
@@ -66,7 +68,7 @@ export class GamesPage implements OnInit {
         this.gamesFemale = result.filter(({gender}) => gender === 'female');
       });
     } catch (error) {
-      console.error(error);
+      this.errorModalService.openModalError();
     } finally {
       this.loadingService.dismiss();
     }

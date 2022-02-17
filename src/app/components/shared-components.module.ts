@@ -1,10 +1,12 @@
+import { ErrorComponent } from './error/error.component';
 import { HeaderComponent } from './header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 const components = [
-    HeaderComponent
+    HeaderComponent,
+    ErrorComponent
 ];
 
 @NgModule({

@@ -8,6 +8,7 @@ import { MessagesEnum } from 'src/app/enums/messages.enum';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { ErrorModalService } from 'src/app/services/error-modal/error-modal.service';
 
 @Component({
   selector: 'app-table-games',
@@ -24,6 +25,7 @@ export class TableGamesPage implements OnInit {
     private loadingService: LoadingService,
     private fileManager: FileManagerService,
     private angularFireStorage: AngularFireStorage,
+    private errorModalService: ErrorModalService
     ) { }
 
   async ngOnInit() {
@@ -49,7 +51,7 @@ export class TableGamesPage implements OnInit {
       await this.tableGamesService.delete(table.id);
       await this.toastService.showToast(MessagesEnum.regulationDeleted, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }
@@ -60,7 +62,7 @@ export class TableGamesPage implements OnInit {
       await this.loadingService.present();
       await this.fileManager.downloadFile(url);
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }
@@ -73,7 +75,7 @@ export class TableGamesPage implements OnInit {
       this.tableGamesService.get().subscribe(result => this.tables = result);
 
     } catch (error) {
-      console.error(error);
+      this.errorModalService.openModalError();
     } finally {
       this.loadingService.dismiss();
     }

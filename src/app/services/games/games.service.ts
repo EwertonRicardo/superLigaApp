@@ -1,3 +1,4 @@
+import { MessagesEnum } from './../../enums/messages.enum';
 import { Injectable } from '@angular/core';
 import { GamesModel } from './../../models/games.model';
 import { TeamsModel } from './../../models/teams.model';
@@ -17,7 +18,7 @@ export class GamesService {
     try {
       await this.ngFirestore.collection('games').add(game);
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
 
@@ -59,7 +60,7 @@ export class GamesService {
     try {
       await this.ngFirestore.collection('games').doc(gameId).update(game);
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
 
@@ -67,7 +68,7 @@ export class GamesService {
     try {
       await this.ngFirestore.doc('games/' + id).delete();
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
 }

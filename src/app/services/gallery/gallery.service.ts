@@ -1,3 +1,4 @@
+import { MessagesEnum } from './../../enums/messages.enum';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -34,7 +35,7 @@ export class GalleryService {
     try {
       await this.ngFirestore.collection('gallery').add(photo);
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
 
@@ -49,7 +50,7 @@ export class GalleryService {
         }
       );
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
 
@@ -57,7 +58,7 @@ export class GalleryService {
     try {
       await this.ngFirestore.doc('gallery/' + id).delete();
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
 }
