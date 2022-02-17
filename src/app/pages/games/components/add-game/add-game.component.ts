@@ -53,6 +53,11 @@ export class AddGameComponent implements OnInit {
       };
 
       await this.gamesService.create(request);
+      this.genderSelecteed =  null;
+      this.fisrtTeam = null;
+      this.genderSelecteed = null;
+      this.secondTeam = null;
+      this.teams = null;
       this.gameForm.reset();
       await this.toastService.showToast(MessagesEnum.gamesAdded, 'toast-success');
     } catch (error) {
@@ -77,10 +82,9 @@ export class AddGameComponent implements OnInit {
 
   public async getTeams(reset = true): Promise<void> {
     try {
-      await this.loadingService.present();
       const genderSelecteed = this.genderSelecteed;
-      console.log(genderSelecteed);
       if(genderSelecteed){
+        await this.loadingService.present();
         this.gamesService.getTeams().subscribe(result => {
           this.teams = result.filter(({gender}) => gender === genderSelecteed);
         });
@@ -93,7 +97,6 @@ export class AddGameComponent implements OnInit {
       console.error(error);
     } finally {
       this.loadingService.dismiss();
-
     }
   }
 
