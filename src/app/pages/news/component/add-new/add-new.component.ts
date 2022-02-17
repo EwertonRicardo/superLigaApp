@@ -99,7 +99,7 @@ export class AddNewComponent implements OnInit {
       this.file = null;
       await this.toastService.showToast(MessagesEnum.newsAdded, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(error);
     } finally {
       this.loadingService.dismiss();
     }
@@ -123,7 +123,7 @@ export class AddNewComponent implements OnInit {
       this.isEditFile = false;
       await this.toastService.showToast(MessagesEnum.newsUpdated, 'toast-success');
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(error);
     } finally {
       this.loadingService.dismiss();
     }
@@ -138,7 +138,7 @@ export class AddNewComponent implements OnInit {
       this.file = await this.fileChooser.getFile();
       this.isEditFile = true;
     } catch (error) {
-      this.toastService.showToast(error);
+      this.toastService.showToast(MessagesEnum.genericMessage);
     } finally {
       this.loadingService.dismiss();
     }

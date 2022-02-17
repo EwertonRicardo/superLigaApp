@@ -1,3 +1,4 @@
+import { ToastService } from './../../services/toast/toast.service';
 import { LoadingService } from './../../services/loading/loading.service';
 import { AddNewComponent } from './component/add-new/add-new.component';
 import { NewDetailComponent } from './component/new-detail/new-detail.component';
@@ -19,7 +20,8 @@ export class NewsPage implements OnInit {
     private modalCtrl: ModalController,
     private loadingService: LoadingService,
     private angularFireStorage: AngularFireStorage,
-  ) { }
+    private toastService: ToastService
+    ) { }
 
   async ngOnInit() {
     await this.getNews();
@@ -53,7 +55,7 @@ export class NewsPage implements OnInit {
 
       await this.newsService.delete(newObject.id);
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(error);
     } finally {
       this.loadingService.dismiss();
     }
@@ -66,7 +68,7 @@ export class NewsPage implements OnInit {
       this.newsService.getNews().subscribe(result => this.news = result);
 
     } catch (error) {
-      console.error(error);
+      this.toastService.showToast(error);
     } finally {
       this.loadingService.dismiss();
     }

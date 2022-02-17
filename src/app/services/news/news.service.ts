@@ -1,3 +1,4 @@
+import { MessagesEnum } from './../../enums/messages.enum';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
@@ -18,7 +19,7 @@ export class NewsService {
     try {
       await this.ngFirestore.collection('news').add(newDetail);
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
   getNews(): Observable<NewsModel[]> {
@@ -34,13 +35,10 @@ export class NewsService {
       );
       return newsResponse;
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
 
-  // getTask(id) {
-  //   return this.ngFirestore.collection('news').doc(id).valueChanges();
-  // }
   async updateNew(newDetail: NewsModel, newsId: string): Promise<void> {
    try {
     await this.ngFirestore.collection('news').doc(newsId).update({
@@ -49,7 +47,7 @@ export class NewsService {
       filespath: newDetail.filespath
     });
    } catch (error) {
-     throw error;
+    throw MessagesEnum.genericMessage;
    }
   }
 
@@ -57,7 +55,7 @@ export class NewsService {
     try {
       await this.ngFirestore.doc('news/' + id).delete();
     } catch (error) {
-      throw error;
+      throw MessagesEnum.genericMessage;
     }
   }
 }
