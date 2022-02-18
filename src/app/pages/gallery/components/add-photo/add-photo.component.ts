@@ -65,7 +65,7 @@ export class AddPhotoComponent implements OnInit {
           return;
         }
         this.fileName = file.name;
-        const fileStoragePath = `filesStorage/${new Date().getTime()}_${file.name}`;
+        const fileStoragePath = `gallery/${new Date().getTime()}_${file.name}`;
         const imageRef = this.angularFireStorage.ref(fileStoragePath);
 
         this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, file);
