@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ErrorModalService } from 'src/app/services/error-modal/error-modal.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-table-games',
   templateUrl: './table-games.page.html',
@@ -18,6 +18,7 @@ import { ErrorModalService } from 'src/app/services/error-modal/error-modal.serv
 export class TableGamesPage implements OnInit {
 
   tables: TableGameModel[];
+  isAdmin = environment.isAdmin;
   constructor(
     private tableGamesService: TableGamesService,
     private modalCtrl: ModalController,

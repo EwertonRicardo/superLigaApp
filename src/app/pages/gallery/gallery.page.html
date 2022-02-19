@@ -14,7 +14,7 @@
           <p class="description">{{ photo.description }}</p>
           <div class="article-info">
             <time>{{photo.publishedDate | date:'dd/MM/yyyy'}} - {{photo.publishedDate | date:'H:mm'}}</time>
-            <div>
+            <div *ngIf="isAdmin">
               <ion-icon name="create-outline" class="icon-action" (click)="openAddPhotoModal(photo)"></ion-icon>
               <ion-icon name="trash-outline" class="icon-action" (click)="deleteGallery(photo)"></ion-icon>
             </div>
@@ -24,7 +24,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="isAdmin">
     <ion-fab-button (click)="openAddPhotoModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

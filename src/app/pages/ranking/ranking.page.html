@@ -8,11 +8,11 @@
         <h4>{{ rank.title }}</h4>
       </ion-label>
       <ion-icon slot="end" name="download-outline" (click)="downloadFile(rank.filepath)"></ion-icon>
-      <ion-icon slot="end" name="trash-outline" (click)="deleteRanking(rank)"></ion-icon>
+      <ion-icon slot="end" name="trash-outline" (click)="deleteRanking(rank)" *ngIf="isAdmin"></ion-icon>
     </ion-item>
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="isAdmin">
     <ion-fab-button (click)="openAddRankingModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

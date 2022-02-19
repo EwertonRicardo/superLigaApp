@@ -8,7 +8,7 @@ import { NewsService } from './../../services/news/news.service';
 import { NewsModel } from './../../models/news.model';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ErrorModalService } from 'src/app/services/error-modal/error-modal.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-news',
   templateUrl: './news.page.html',
@@ -16,6 +16,7 @@ import { ErrorModalService } from 'src/app/services/error-modal/error-modal.serv
 })
 export class NewsPage implements OnInit {
   news: NewsModel[];
+  isAdmin = environment.isAdmin;
   constructor(
     private newsService: NewsService,
     private modalCtrl: ModalController,

@@ -9,6 +9,7 @@ import { FileManagerService } from 'src/app/services/file-manager/file-manager.s
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { MessagesEnum } from 'src/app/enums/messages.enum';
 import { AddRankingComponent } from './component/add-ranking/add-ranking.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-ranking',
   templateUrl: './ranking.page.html',
@@ -17,6 +18,7 @@ import { AddRankingComponent } from './component/add-ranking/add-ranking.compone
 export class RankingPage implements OnInit {
 
   ranking: RankingModel[];
+  isAdmin = environment.isAdmin;
   constructor(
     private rankingService: RankingService,
     private modalCtrl: ModalController,

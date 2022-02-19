@@ -8,6 +8,7 @@ import { MessagesEnum } from 'src/app/enums/messages.enum';
 import { PhotosModel } from './../../models/photos.model';
 import { ModalController } from '@ionic/angular';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-gallery',
@@ -23,6 +24,7 @@ export class GalleryPage implements OnInit {
     spaceBetween: 30
   };
   photos: PhotosModel[];
+  isAdmin = environment.isAdmin;
   constructor(
     private galleryService: GalleryService,
     private loadingService: LoadingService,

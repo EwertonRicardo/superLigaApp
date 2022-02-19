@@ -7,6 +7,7 @@ import { ToastService } from './../../services/toast/toast.service';
 import { GamesModel } from './../../models/games.model';
 import { MessagesEnum } from 'src/app/enums/messages.enum';
 import { ErrorModalService } from 'src/app/services/error-modal/error-modal.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-games',
   templateUrl: './games.page.html',
@@ -17,6 +18,7 @@ export class GamesPage implements OnInit {
   gamesFemale: GamesModel[];
   teamGender = 'male';
   game: GamesModel;
+  isAdmin = environment.isAdmin;
   constructor(
     private modalCtrl: ModalController,
     private gamesService: GamesService,

@@ -8,11 +8,11 @@
         <h4>{{table.title}}</h4>
       </ion-label>
       <ion-icon slot="end" name="download-outline" (click)="downloadFile(table.filepath)"></ion-icon>
-      <ion-icon slot="end" name="trash-outline" (click)="deleteTableGame(table)"></ion-icon>
+      <ion-icon slot="end" name="trash-outline" (click)="deleteTableGame(table)" *ngIf="isAdmin"></ion-icon>
     </ion-item>
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="isAdmin">
     <ion-fab-button (click)="openAddDetailModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

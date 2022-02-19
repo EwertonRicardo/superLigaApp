@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  isAdmin: false,
   firebaseConfig: {
     apiKey: 'AIzaSyCkTVIHcSr2u19LCeNfl7MHBukmv-8gPQI',
     authDomain: 'superligaapp-2fba7.firebaseapp.com',

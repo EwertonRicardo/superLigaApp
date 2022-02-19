@@ -9,6 +9,7 @@ import { MessagesEnum } from 'src/app/enums/messages.enum';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-regulations',
@@ -17,6 +18,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 })
 export class RegulationsPage implements OnInit {
   regulations: RegulationsModel[];
+  isAdmin = environment.isAdmin;
   constructor(
     private regulationsService: RegulationsService,
     private modalCtrl: ModalController,

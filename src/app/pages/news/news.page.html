@@ -18,14 +18,14 @@
           <ion-row class="ion-text-right action-buttons">
             <ion-col class="ion-no-padding">
               <ion-icon name="create-outline" (click)="openAddDetailModal(new)"></ion-icon>
-              <ion-icon name="trash-outline" (click)="deleteNew(new)"></ion-icon>
+              <ion-icon name="trash-outline" *ngIf="isAdmin" (click)="deleteNew(new)"></ion-icon>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>    
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="isAdmin" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openAddDetailModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
