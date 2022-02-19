@@ -1,0 +1,26 @@
+.container {
+    padding: 6px 10px;
+
+    ion-item {
+        --border-width: 0 0 0 6px;
+        --border-color: rgba(45, 112, 229, 1);
+        box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
+        padding: 0;
+        margin: 14px 0;
+        --border-radius: 10px;
+        font-weight: 600;
+        --min-height: 60px;
+        display: flex;
+        align-items: center;
+
+        ion-label {
+            font-family: Gilroy-bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: grid;
+            margin: 0;
+            font-size: 16px;
+            color: var(--ion-color-medium-shade);
+        }
+    }
+}
