@@ -66,8 +66,8 @@ export class GamesPage implements OnInit {
       await this.loadingService.present();
 
       this.gamesService.getGames().subscribe(result => {
-        this.gamesMale = result.filter(({gender}) => gender === 'male');
-        this.gamesFemale = result.filter(({gender}) => gender === 'female');
+        this.gamesMale = result.filter(({gender}) => gender === 'male')?.sort((a, b ) => +a?.gameNumber - +b?.gameNumber);
+        this.gamesFemale = result.filter(({gender}) => gender === 'female')?.sort((a, b ) => +a?.gameNumber - +b?.gameNumber);
       });
     } catch (error) {
       this.errorModalService.openModalError();

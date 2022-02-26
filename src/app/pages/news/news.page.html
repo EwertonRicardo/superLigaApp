@@ -17,7 +17,7 @@
           </ion-row>
           <ion-row class="ion-text-right action-buttons">
             <ion-col class="ion-no-padding">
-              <ion-icon name="create-outline" (click)="openAddDetailModal(new)"></ion-icon>
+              <ion-icon name="create-outline" *ngIf="isAdmin" (click)="openAddDetailModal(new)"></ion-icon>
               <ion-icon name="trash-outline" *ngIf="isAdmin" (click)="deleteNew(new)"></ion-icon>
             </ion-col>
           </ion-row>
