@@ -24,10 +24,10 @@ export class FileManagerService {
       const removeFileNamePath = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
       const fileName = removeFileNamePath?.substring(0, removeFileNamePath.indexOf('?'));
       const base64 = await this.convertBlobToBase64(fileResponse) as string;
-      console.log(fileName);
+      const finalFileName = fileName.substring(fileName.lastIndexOf('_') + 1).replace(/%/g, '');
 
       const foo = await Filesystem.writeFile({
-        path: fileName,
+        path: finalFileName,
         data: base64,
         directory: Directory.Documents,
       });
